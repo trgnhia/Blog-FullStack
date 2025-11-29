@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Form, FormControl, InputGroup } from "react-bootstrap";
 
-const Topbar: React.FC = () => {
+const TopBar: React.FC = () => {
   return (
     <Navbar
       bg="white"
@@ -35,4 +35,4 @@ const Topbar: React.FC = () => {
   );
 };
 
-export default Topbar;
+export default TopBar;

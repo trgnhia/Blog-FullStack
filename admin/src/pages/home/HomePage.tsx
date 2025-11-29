@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Button, Table, Badge } from "react-bootstrap";
+import { NavLink } from "react-router";
 
 const HomePage: React.FC = () => {
   return (
@@ -12,7 +13,9 @@ const HomePage: React.FC = () => {
             Overview of your blog performance and recent activity.
           </p>
         </div>
-        <Button variant="primary">+ New Blog</Button>
+        <NavLink to="/blogs/create">
+          <Button variant="primary">+ New Blog</Button>
+        </NavLink>
       </div>
 
       {/* Stats cards */}
@@ -48,15 +51,13 @@ const HomePage: React.FC = () => {
         </Col>
       </Row>
 
-      {/* Recent blogs table */}
+      {/* Recent blogs + Tips */}
       <Row className="g-3">
-        <Col lg={8}>
+        <Col lg={9}>
           <Card>
             <Card.Header className="d-flex justify-content-between align-items-center">
               <span className="fw-semibold">Recent Blogs</span>
-              <Button variant="outline-secondary" size="sm">
-                View all
-              </Button>
+              {/* Không cần View all nữa nên bỏ nút */}
             </Card.Header>
             <Card.Body className="p-0">
               <Table hover responsive className="mb-0 align-middle">
@@ -68,6 +69,7 @@ const HomePage: React.FC = () => {
                     <th>Tags</th>
                     <th>Updated</th>
                     <th>Status</th>
+                    <th className="text-end">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,7 +87,19 @@ const HomePage: React.FC = () => {
                     <td>
                       <Badge bg="success">Published</Badge>
                     </td>
+                    <td className="text-end">
+                      <Button variant="outline-secondary" size="sm" className="me-1">
+                        View
+                      </Button>
+                      <Button variant="outline-primary" size="sm" className="me-1">
+                        Edit
+                      </Button>
+                      <Button variant="outline-danger" size="sm">
+                        Delete
+                      </Button>
+                    </td>
                   </tr>
+
                   <tr>
                     <td>2</td>
                     <td>Styling with Tailwind CSS</td>
@@ -102,7 +116,19 @@ const HomePage: React.FC = () => {
                         Draft
                       </Badge>
                     </td>
+                    <td className="text-end">
+                      <Button variant="outline-secondary" size="sm" className="me-1">
+                        View
+                      </Button>
+                      <Button variant="outline-primary" size="sm" className="me-1">
+                        Edit
+                      </Button>
+                      <Button variant="outline-danger" size="sm">
+                        Delete
+                      </Button>
+                    </td>
                   </tr>
+
                   <tr>
                     <td>3</td>
                     <td>Building an admin dashboard</td>
@@ -117,6 +143,17 @@ const HomePage: React.FC = () => {
                     <td>
                       <Badge bg="success">Published</Badge>
                     </td>
+                    <td className="text-end">
+                      <Button variant="outline-secondary" size="sm" className="me-1">
+                        View
+                      </Button>
+                      <Button variant="outline-primary" size="sm" className="me-1">
+                        Edit
+                      </Button>
+                      <Button variant="outline-danger" size="sm">
+                        Delete
+                      </Button>
+                    </td>
                   </tr>
                 </tbody>
               </Table>
@@ -124,25 +161,7 @@ const HomePage: React.FC = () => {
           </Card>
         </Col>
 
-        {/* Right side: small card */}
-        <Col lg={4}>
-          <Card className="mb-3">
-            <Card.Header>
-              <span className="fw-semibold">Quick Actions</span>
-            </Card.Header>
-            <Card.Body className="d-flex flex-column gap-2">
-              <Button variant="outline-primary" size="sm">
-                Create new blog
-              </Button>
-              <Button variant="outline-secondary" size="sm">
-                Manage tags
-              </Button>
-              <Button variant="outline-secondary" size="sm">
-                View all blogs
-              </Button>
-            </Card.Body>
-          </Card>
-
+        <Col lg={3}>
           <Card>
             <Card.Header>
               <span className="fw-semibold">Tips</span>
