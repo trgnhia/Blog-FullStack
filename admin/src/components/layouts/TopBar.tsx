@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Form, FormControl, InputGroup } from "react-bootstrap";
+import { NavLink } from "react-router";
 
 const TopBar: React.FC = () => {
   return (
@@ -10,7 +11,9 @@ const TopBar: React.FC = () => {
       <div>
         <span className="text-muted">Dashboard</span>
         <span className="mx-1">/</span>
-        <strong>Home</strong>
+        <NavLink to="/">
+         <strong>Home</strong>
+        </NavLink>
       </div>
 
       <div className="d-flex align-items-center gap-3">
@@ -26,7 +29,7 @@ const TopBar: React.FC = () => {
             style={{ width: 32, height: 32 }}
           />
           <div className="d-flex flex-column">
-            <span className="small fw-semibold">Derek Alvarado</span>
+            <span className="small fw-semibold">Tran Nghia</span>
             <span className="small text-muted">Admin</span>
           </div>
         </div>

@@ -8,7 +8,7 @@ const Sidebar: React.FC = () => {
       style={{ width: 240, height: "100vh", position: "sticky", top: 0 }}
     >
       <div className="mb-4">
-        <span className="fs-4 fw-bold">Brand.</span>
+        <span className="fs-4 fw-bold">Admin Site</span>
       </div>
 
       <Nav className="flex-column gap-2">

@@ -1,4 +1,4 @@
-import BlogForm from "../../components/BlogForm";
+import BlogForm from "../../components/blog/BlogForm";
 
 const BlogCreatePage = () => {
   return <BlogForm mode="create" />;

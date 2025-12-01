@@ -2,6 +2,7 @@
 import AdminLayout from './components/layouts/AdminLayout';
 import HomePage from './pages/home/HomePage';
 import BlogCreatePage from './pages/blog/BlogCreatePage';
+import BlogViewPage from './pages/blog/BlogViewPage';
 import './App.css'
 import {Routes, Route} from 'react-router'
 
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route index element={<AdminLayout><HomePage/></AdminLayout>}></Route>
       <Route path="/blogs/create" element={<AdminLayout><BlogCreatePage/></AdminLayout>}></Route>
+      <Route path="/blogs/view" element={<BlogViewPage/>}></Route>
     </Routes>
   )
 }

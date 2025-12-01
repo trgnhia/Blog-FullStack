@@ -1,8 +1,11 @@
 import React from "react";
 import { Row, Col, Card, Button, Table, Badge } from "react-bootstrap";
+import BlogDeleteModal from "../../components/blog/BlogDeleteModal";
 import { NavLink } from "react-router";
+import { useState } from "react";
 
 const HomePage: React.FC = () => {
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   return (
     <div>
       {/* Title + button */}
@@ -51,13 +54,11 @@ const HomePage: React.FC = () => {
         </Col>
       </Row>
 
-      {/* Recent blogs + Tips */}
       <Row className="g-3">
         <Col lg={9}>
           <Card>
             <Card.Header className="d-flex justify-content-between align-items-center">
               <span className="fw-semibold">Recent Blogs</span>
-              {/* Không cần View all nữa nên bỏ nút */}
             </Card.Header>
             <Card.Body className="p-0">
               <Table hover responsive className="mb-0 align-middle">
@@ -88,13 +89,27 @@ const HomePage: React.FC = () => {
                       <Badge bg="success">Published</Badge>
                     </td>
                     <td className="text-end">
-                      <Button variant="outline-secondary" size="sm" className="me-1">
-                        View
-                      </Button>
-                      <Button variant="outline-primary" size="sm" className="me-1">
+                      <NavLink to="/blogs/view">
+                        <Button
+                          variant="outline-secondary"
+                          size="sm"
+                          className="me-1"
+                        >
+                          View
+                        </Button>
+                      </NavLink>
+                      <Button
+                        variant="outline-primary"
+                        size="sm"
+                        className="me-1"
+                      >
                         Edit
                       </Button>
-                      <Button variant="outline-danger" size="sm">
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        onClick={() => setShowDeleteModal(true)}
+                      >
                         Delete
                       </Button>
                     </td>
@@ -117,10 +132,18 @@ const HomePage: React.FC = () => {
                       </Badge>
                     </td>
                     <td className="text-end">
-                      <Button variant="outline-secondary" size="sm" className="me-1">
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        className="me-1"
+                      >
                         View
                       </Button>
-                      <Button variant="outline-primary" size="sm" className="me-1">
+                      <Button
+                        variant="outline-primary"
+                        size="sm"
+                        className="me-1"
+                      >
                         Edit
                       </Button>
                       <Button variant="outline-danger" size="sm">
@@ -144,10 +167,18 @@ const HomePage: React.FC = () => {
                       <Badge bg="success">Published</Badge>
                     </td>
                     <td className="text-end">
-                      <Button variant="outline-secondary" size="sm" className="me-1">
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        className="me-1"
+                      >
                         View
                       </Button>
-                      <Button variant="outline-primary" size="sm" className="me-1">
+                      <Button
+                        variant="outline-primary"
+                        size="sm"
+                        className="me-1"
+                      >
                         Edit
                       </Button>
                       <Button variant="outline-danger" size="sm">
@@ -180,6 +211,10 @@ const HomePage: React.FC = () => {
           </Card>
         </Col>
       </Row>
+      <BlogDeleteModal
+        setShowDeleteModal={setShowDeleteModal}
+        showDeleteModal={showDeleteModal}
+      />
     </div>
   );
 };
