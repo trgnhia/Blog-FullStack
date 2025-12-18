@@ -1,20 +1,53 @@
-
-import AdminLayout from './components/layouts/AdminLayout';
-import HomePage from './pages/home/HomePage';
-import BlogCreatePage from './pages/blog/BlogCreatePage';
-import BlogViewPage from './pages/blog/BlogViewPage';
-import './App.css'
-import {Routes, Route} from 'react-router'
+import AdminLayout from "./components/layouts/AdminLayout";
+import HomePage from "./pages/home/HomePage";
+import BlogCreatePage from "./pages/blog/BlogCreatePage";
+import BlogViewPage from "./pages/blog/BlogViewPage";
+import BlogEditPage from "./pages/blog/BlogEditPage";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-
   return (
-    <Routes>
-      <Route index element={<AdminLayout><HomePage/></AdminLayout>}></Route>
-      <Route path="/blogs/create" element={<AdminLayout><BlogCreatePage/></AdminLayout>}></Route>
-      <Route path="/blogs/view" element={<BlogViewPage/>}></Route>
-    </Routes>
-  )
+    <>
+      <Routes>
+        <Route
+          index
+          element={
+            <AdminLayout>
+              <HomePage />
+            </AdminLayout>
+          }
+        ></Route>
+        <Route
+          path="/blogs/create"
+          element={
+            <AdminLayout>
+              <BlogCreatePage />
+            </AdminLayout>
+          }
+        ></Route>
+        <Route
+          path="/blogs/view/:blogSlug"
+          element={
+            <AdminLayout>
+              <BlogViewPage />
+            </AdminLayout>
+          }
+        ></Route>
+        <Route
+          path="/blogs/edit/:blogSlug"
+          element={
+            <AdminLayout>
+              <BlogEditPage />
+            </AdminLayout>
+          }
+        ></Route>
+      </Routes>
+      <ToastContainer position="top-right" autoClose={2500} theme="colored" />
+    </>
+  );
 }
 
 export default App;

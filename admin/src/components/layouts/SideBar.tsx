@@ -5,7 +5,7 @@ const Sidebar: React.FC = () => {
   return (
     <div
       className="d-flex flex-column bg-dark text-white p-3"
-      style={{ width: 240, height: "100vh", position: "sticky", top: 0 }}
+      style={{ width: 200, height: "100vh", position: "sticky", top: 0 }}
     >
       <div className="mb-4">
         <span className="fs-4 fw-bold">Admin Site</span>

@@ -1,0 +1,10 @@
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 16px;
+}
+
+.selected-img {
+  outline: 3px solid  #03e7b6;
+  border-radius: 6px;
+}
