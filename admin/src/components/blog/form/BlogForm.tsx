@@ -20,7 +20,7 @@ type PickerMode = "cover" | "editor";
 
 export default function BlogForm(props: BlogFormProps) {
   const { mode, blog } = props;
-  const [showUploadImage, setShowUploadImage] = useState<boolean>(false);
+  const [showImagePicker, setShowImagePicker] = useState<boolean>(false);
   const [coverSelectedImage, setCoverSelectedImage] = useState<ImageResponse>();
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>(blog?.title ?? "");
@@ -113,14 +113,14 @@ export default function BlogForm(props: BlogFormProps) {
 
   function openCoverPicker() {
     setPickerMode("cover");
-    setShowUploadImage(true);
+    setShowImagePicker(true);
   }
  
   function onOpenEditorImagePicker(cb: (url: string) => void) {
     setPickerMode("editor");
     setPendingInsertCb(() => cb);
     setPickerSelectedImage(undefined);
-    setShowUploadImage(true);
+    setShowImagePicker(true);
   }
   // *************--------Handle tags logic------------************//
   function addTag() {
@@ -248,9 +248,9 @@ export default function BlogForm(props: BlogFormProps) {
         />
       </Form>
       <ImagePickerModal
-        showUploadImage={showUploadImage}
+        showImagePicker={showImagePicker}
         onClose={() => {
-          setShowUploadImage(false);
+          setShowImagePicker(false);
           setPendingInsertCb(null);
           setPickerSelectedImage(undefined);
         }}

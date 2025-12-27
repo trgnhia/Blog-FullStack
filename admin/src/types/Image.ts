@@ -4,6 +4,7 @@ export interface ImageResponse {
   path: string 
 }
 
-// export interface ImagePageResponse {
-
-// }
+export interface ImagePageResponse {
+  items : ImageResponse[];
+  hasNext: boolean;
+}

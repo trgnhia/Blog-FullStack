@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --tc-neutral-900:#0d0d0d;
+  --tc-neutral-600:#686262;
+  --tc-neutral-200:#ebe5e5;
+  --tc-system-white:#ffffff;
+  --tc-shadow-1: 0px 20px 60px 0px rgba(0,0,0,0.08);
+  --tc-linear-1: linear-gradient(90deg,#e64284,#ff623b);
+}
+
+/* tiny helpers giống vibe Elora */
+@layer components {
+  .pill {
+    @apply inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold;
+  }
+  .pill-dark {
+    @apply pill bg-black/60 text-white shadow;
+  }
+  .card {
+    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md;
+  }
+  .hover-up {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+}
+.container-page{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 1320px; /* tuỳ chọn */
+}
