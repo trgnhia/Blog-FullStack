@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 type PostCardProps = {
   title: string;
   description: string;
@@ -20,8 +20,8 @@ export default function PostCard({
   return (
     <article className="relative">
       {/* Image */}
-      <a
-        href="#"
+      <Link
+        href="blogs/1"
         className="group block overflow-hidden rounded-[28px] bg-white/5"
       >
         <div className="relative aspect-[684/524] w-full">
@@ -46,14 +46,14 @@ export default function PostCard({
           <div className="h-10 w-10 rounded-full border border-white/20 bg-white/10" />
           <div className="h-10 w-10 rounded-full border border-white/20 bg-white/10" />
         </div>
-      </a>
+      </Link>
 
       {/* Content */}
       <div className="mt-5">
         <h4 className="font-serif text-[28px] leading-tight text-white">
-          <a href="#" className="hover:underline">
+          <Link href="blogs/1" className="hover:underline">
             {title}
-          </a>
+          </Link>
         </h4>
 
         <p className="mt-3 text-[15px] leading-relaxed text-white/80">
