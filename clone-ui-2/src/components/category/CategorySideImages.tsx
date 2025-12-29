@@ -25,8 +25,8 @@ export default function CategorySideImages({ images }: Props) {
           pagination={{ clickable: true }}
           className="w-full"
         >
-          {images.map((img) => (
-            <SwiperSlide key={img.src}>
+          {images.map((img,i) => (
+            <SwiperSlide key={`${img.src}-${i}`}>
               <img
                 src={img.src}
                 alt={img.alt ?? ""}

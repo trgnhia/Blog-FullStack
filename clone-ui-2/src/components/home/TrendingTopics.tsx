@@ -11,37 +11,37 @@ const TOPICS: Topic[] = [
     title: "Inspiration",
     href: "/category/inspiration",
     imageUrl:
-      "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg",
+      "images/home/inspiration.jpg",
   },
   {
     title: "Technology",
     href: "/category/technology",
     imageUrl:
-      "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg",
+      "images/home/technology.jpg",
   },
   {
     title: "Automotive",
     href: "/category/automotive",
     imageUrl:
-      "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg",
+      "images/home/automotive.jpg",
   },
   {
     title: "Science",
     href: "/category/science",
     imageUrl:
-      "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg",
+      "images/home/science.jpg",
   },
   {
     title: "Culture",
     href: "/category/culture",
     imageUrl:
-      "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg",
+      "images/home/culture.jpg",
   },
   {
     title: "Gaming",
     href: "/category/gaming",
     imageUrl:
-      "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg",
+      "images/home/gaming.jpg",
   },
 ];
 

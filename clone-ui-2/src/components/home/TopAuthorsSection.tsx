@@ -7,9 +7,10 @@ type Author = {
   title: string;
   bio: string;
   socials: Social[];
+  src: string
 };
 
-const IMG = "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg";
+
 
 const AUTHORS: Author[] = [
   {
@@ -17,18 +18,21 @@ const AUTHORS: Author[] = [
     title: "Tech & Future Columnist",
     bio: "Caleb explores how technology shapes the way we live, work, and dream, bringing complex ideas closer to everyday life.",
     socials: ["facebook", "x", "linkedin", "behance"],
+    src: "/images/top_authors/author_1.jpg"
   },
   {
     name: "Theo Varen",
     title: "Design & Innovation Editor",
     bio: "Theo’s work connects emotion and design, turning ideas into conversations that inspire new ways of seeing.",
     socials: ["facebook", "x", "linkedin", "behance"],
+    src: "/images/top_authors/author_2.jpg"
   },
   {
     name: "Elora Valen",
     title: "Tech writer – Culture",
     bio: "Elora is a writer, a dreamer, and a lifelong explorer of ideas. She believes that creativity isn’t just a skill.",
     socials: ["facebook", "x", "linkedin", "behance"],
+    src: "/images/top_authors/author_3.jpg"
   },
 ];
 
@@ -63,7 +67,7 @@ function AuthorCard({ author }: { author: Author }) {
       >
         <div className="relative h-[100px] w-[100px]">
           <Image
-            src={IMG}
+            src={author.src}
             alt={author.name}
             fill
             className="object-cover"

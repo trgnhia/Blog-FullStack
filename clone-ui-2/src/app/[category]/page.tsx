@@ -8,12 +8,11 @@ import CategoriesBlock from "@/components/category/CategoriesBlock";
 import Footer from "@/components/category/Footer";
 import CategorySideImages from "@/components/category/CategorySideImages";
 const slides = [
-  "/images/s5_1.jpg",
-  "/images/s5_2.jpg",
-  "/images/s5_3.jpg",
-  "/images/s6_1.jpg",
-  "/images/s6_2.jpg",
-  "/images/s6_3.jpg",
+  "/images/category/image_2.jpg",
+  "/images/category/image_1.jpg",
+  "/images/category/image_3.jpg",
+  "/images/category/image_4.jpg",
+  "/images/category/image_5.jpg",
 ];
 
 const images = slides.map((src) => ({ src }));

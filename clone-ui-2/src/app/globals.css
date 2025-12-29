@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root{
-  --tc-neutral-900:#1a1a1a;
+  --tc-neutral-900:#1e1e1e ;
   --tc-neutral-600:#686262;
   --tc-neutral-200:#ebe5e5;
   --tc-system-white:#ffffff;
