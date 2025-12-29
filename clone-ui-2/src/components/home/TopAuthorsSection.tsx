@@ -74,24 +74,24 @@ function AuthorCard({ author }: { author: Author }) {
       </a>
 
       {/* Name */}
-      <h3 className="mt-6 font-heading text-4xl leading-tight text-white">
+      <h4 className="mt-5 font-serif antialiased text-2xl leading-tight text-white">
         <a href="#" className="hover:opacity-90">
           {author.name}
         </a>
-      </h3>
+      </h4>
 
       {/* Role */}
-      <p className="mt-2 text-sm font-medium text-[#ea4c92]">
+      <p className="mt-1 text-sm font-medium text-[#ea4c92]">
         {author.title}
       </p>
 
       {/* Bio */}
-      <p className="mx-auto mt-4 max-w-md text-base leading-7 text-white/60">
+      <p className="mx-auto mt-2 max-w-md text-base leading-7 text-white/60">
         {author.bio}
       </p>
 
       {/* Social */}
-      <div className="mt-8 inline-flex items-center gap-3 rounded-2xl bg-white/0 px-2 py-1">
+      <div className="mt-5 inline-flex items-center gap-3 rounded-2xl bg-white/0 px-2 py-1">
         {author.socials.map((s) => (
           <SocialIcon key={s} type={s} />
         ))}
@@ -104,7 +104,7 @@ export default function TopAuthorsSection() {
   return (
     <section className="py-16 pt-4">
       <div className="text-center">
-        <h2 className="font-heading text-5xl text-white">Top authors</h2>
+        <h5 className="font-serif antialiased text-4xl text-white">Top authors</h5>
         <p className="mt-3 text-base text-white/60">
           Top authors bring value to Elora magazine
         </p>

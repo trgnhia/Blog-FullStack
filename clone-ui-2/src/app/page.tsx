@@ -11,17 +11,17 @@ export default function Page() {
   return (
     <div className="min-h-screen">
       <HeaderShell />
-
+  
       <main className="pb-20">
         <Container>
           <div className="pt-6">
             <HeroSection />
           </div>
-
+  
           <div className="pt-10">
             <CategoryChips />
           </div>
-
+  
           <div className="pt-6">
             <TrendingTopics />
           </div>
@@ -32,7 +32,7 @@ export default function Page() {
             <div className="relative left-1/2 -ml-[50vw] w-screen">
               <div className="h-px bg-white/10" />
             </div>
-
+  
             <div className="pt-10">
               <TopAuthorsSection />
             </div>

@@ -36,8 +36,6 @@ export default function CategorySideImages({ images }: Props) {
           ))}
         </Swiper>
       </div>
-
-      {/* optional: overlay nhẹ để giống vibe Elora */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
     </div>
   );
