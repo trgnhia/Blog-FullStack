@@ -122,6 +122,7 @@ export default function PostCardSlider() {
               <div className="h-full">
                 <PostCard
                   key={idx}
+                  slug={item.description}
                   title={item.title}
                   excerpt={item.description}
                   category={item.category}

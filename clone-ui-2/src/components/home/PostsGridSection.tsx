@@ -72,6 +72,7 @@ export default function PostsGridSection({
             <PostCard
               key={idx}
               title={p.title}
+              slug={p.slug}
               excerpt={p.excerpt}
               category={p.tagsArray[0]}
               author={p.author}
@@ -85,7 +86,7 @@ export default function PostsGridSection({
           {hasMore ? (
             <button
               onClick={handleLoadMore}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-6 py-3 text-[14px] font-bold text-white shadow hover:opacity-95"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-4 text-[16px] font-semibold text-white shadow hover:opacity-95"
             >
               Load more posts
               <span className="inline-block">
@@ -93,7 +94,7 @@ export default function PostsGridSection({
               </span>
             </button>
           ) : (
-            <p className="inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-white/60 backdrop-blur-sm">
+            <p className="inline-block rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm text-white/60 tracking-wide backdrop-blur-sm">
               No more posts to load
             </p>
           )}

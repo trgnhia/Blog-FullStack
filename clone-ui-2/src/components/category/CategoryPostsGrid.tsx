@@ -61,6 +61,7 @@ export default function CategoryPostsGrid({
         >
           {MOCK_POSTS.map((p, idx) => (
             <PostCard
+              slug={p.description}
               key={idx}
               title={p.title}
               excerpt={p.description}

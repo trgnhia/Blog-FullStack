@@ -1,7 +1,7 @@
 // app/components/layout/Footer.tsx
 export default function Footer() {
   return (
-    <footer className="mt-16">
+    <footer className="mt-10">
       {/* divider full width */}
       <div className="relative left-1/2 -ml-[50vw] w-screen">
         <div className="h-px bg-white/10" />
@@ -10,7 +10,7 @@ export default function Footer() {
       {/* content */}
       <div className="py-24 text-center">
         <h2 className="text-4xl font-serif text-primary mb-4">
-          Elora
+          MyBlog
         </h2>
 
         <p className="max-w-xl mx-auto text-white/70 leading-relaxed">
@@ -33,7 +33,7 @@ export default function Footer() {
 
         {/* copyright */}
         <p className="mt-10 text-sm text-white/40">
-          © 2025 <span className="text-white">Elora</span>. All Rights Reserved.
+          © 2025 <span className="text-white">MyBlog</span>. All Rights Reserved.
         </p>
       </div>
     </footer>

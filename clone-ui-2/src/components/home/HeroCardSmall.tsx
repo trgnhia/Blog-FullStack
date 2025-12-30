@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { BlogViewModel } from "@/types/blog";
-
+import Link from 'next/link';
 export default function HeroCardSmall({ blog }: { blog: BlogViewModel }) {
   return (
     <article className="relative h-full">
       <div className="relative h-full overflow-hidden rounded-[38px] bg-zinc-800">
         {/* Image */}
         <a
-          href="#"
+          href={`blogs/${blog.slug}`}
           className="block h-full min-h-[420px] lg:min-h-[520px] w-full"
         >
           <Image
@@ -34,7 +34,9 @@ export default function HeroCardSmall({ blog }: { blog: BlogViewModel }) {
           </div>
 
           <h3 className="mt-2 font-serif text-2xl font-semibold leading-snug text-white">
-            {blog.title}
+          <Link href={`blogs/${blog.slug}`} className="hover:underline">
+              {blog.title}
+            </Link>
           </h3>
 
           <div className="mt-3 flex items-center text-xs font-medium text-white/70">

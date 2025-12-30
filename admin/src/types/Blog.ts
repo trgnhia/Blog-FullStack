@@ -6,8 +6,8 @@ export interface BlogRequest {
   tags : string,
   excerpt : string,
   content : string,
-  // coverImageId: string
-  publish : boolean
+  publish : boolean,
+  category : string
 }
 
 export interface BlogResponse {
@@ -21,6 +21,7 @@ export interface BlogResponse {
   tags : string,
   excerpt : string,
   content : string,
+  category : string,
   publish : boolean
 }
 

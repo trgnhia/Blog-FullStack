@@ -45,13 +45,6 @@ export default function BlogContentSection(props: Props) {
             image_dimensions: true,
             image_caption: true,
             image_advtab: true,
-            // file_picker_types: "image",
-            // file_picker_callback: (cb, _value, meta) => {
-            //   // if (meta.filetype !== "image") return;
-            //   onOpenEditorImagePicker((url) => {
-            //     cb(url, {title: "Insert image"});
-            //   })
-            // },
             setup: (editor) => {
               editor.ui.registry.addButton("myImagePicker", {
                 icon: "image",

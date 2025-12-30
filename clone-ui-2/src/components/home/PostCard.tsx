@@ -5,6 +5,7 @@ type PostCardProps = {
   excerpt: string;
   category: string;
   author: string;
+  slug: string
   timeAgo: string;
   imageSrc: string; // /uploads/...
 };
@@ -15,13 +16,14 @@ export default function PostCard({
   category,
   author,
   timeAgo,
+  slug,
   imageSrc,
 }: PostCardProps) {
   return (
     <article className="relative">
       {/* Image */}
       <Link
-        href="blogs/1"
+        href={`blogs/${slug}`}
         className="group block overflow-hidden rounded-[28px] bg-white/5"
       >
         <div className="relative aspect-[684/524] w-full">
@@ -38,7 +40,7 @@ export default function PostCard({
         {/* Category pill (top-right) */}
         {category && (
           <div className="absolute right-5 top-5">
-            <span className="rounded-full bg-black/60 px-4 py-2 text-[12px] font-semibold text-white backdrop-blur">
+            <span className="rounded-full bg-black/60 px-4 py-[6px] text-[12px] tracking-wide font-semibold text-white backdrop-blur">
               {category}
             </span>
           </div>
@@ -47,8 +49,8 @@ export default function PostCard({
 
       {/* Content */}
       <div className="mt-5">
-        <h4 className="font-serif text-[28px] leading-tight text-white">
-          <Link href="blogs/1" className="hover:underline">
+        <h4 className="font-serif text-[25px] leading-tight text-white">
+          <Link href={`blogs/${slug}`} className="hover:underline">
             {title}
           </Link>
         </h4>
