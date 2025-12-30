@@ -11,6 +11,8 @@ import BlogImageSection from "./BlogImageSection";
 import BlogMetaSection from "./BlogMetaSection";
 import BlogTagsSection from "./BlogTagsSection";
 import BlogContentSection from "./BlogContentSection";
+import BlogCategorySection from "./BlogCategorySection";
+import { type BlogCategory } from "../../../types/Categories";
 type BlogFormProps = {
   mode: "create" | "edit";
   blog?: BlogResponse;
@@ -24,6 +26,9 @@ export default function BlogForm(props: BlogFormProps) {
   const [coverSelectedImage, setCoverSelectedImage] = useState<ImageResponse>();
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>(blog?.title ?? "");
+  const [category, setCategory] = useState<BlogCategory>(
+    (blog?.category as BlogCategory) ?? "lifestyle"
+  );
   const [slug, setSlug] = useState<string>(blog?.slug ?? "");
   const [excerpt, setExcerpt] = useState<string>(blog?.excerpt ?? "");
   const [author, setAuthor] = useState<string>(blog?.author ?? "");
@@ -36,11 +41,17 @@ export default function BlogForm(props: BlogFormProps) {
   const [coverImagePreview, setCoverImagePreview] = useState<string | null>(
     blog?.coverImageUrl ?? null
   );
-  const [coverImagePath, setCoverImagePath] = useState<string>(blog?.coverImagePath ?? "");
-  const [pickerMode, setPickerMode ] = useState<PickerMode>("cover");
-  const [pendingInsertCb, setPendingInsertCb] = useState<((url: string) => void) | null> (null);
-  const [pickerSelectedImage, setPickerSelectedImage] = useState<ImageResponse | undefined>();
-  
+  const [coverImagePath, setCoverImagePath] = useState<string>(
+    blog?.coverImagePath ?? ""
+  );
+  const [pickerMode, setPickerMode] = useState<PickerMode>("cover");
+  const [pendingInsertCb, setPendingInsertCb] = useState<
+    ((url: string) => void) | null
+  >(null);
+  const [pickerSelectedImage, setPickerSelectedImage] = useState<
+    ImageResponse | undefined
+  >();
+
   // *************--------Handle slug logic------------************//
   function slugtify(title: string) {
     return title
@@ -68,6 +79,12 @@ export default function BlogForm(props: BlogFormProps) {
     const objectUrl = URL.createObjectURL(file);
     setCoverImagePreview(objectUrl);
 
+    const MAX_SIZE = 5 * 1024 * 1024;
+    if (file.size > MAX_SIZE) {
+      toast.error("Image size must be less than 5MB");
+      e.target.value = "";
+      return;
+    }
     const formData = new FormData();
     formData.append("file", file);
     const uploadImage = await axios.post("/api/uploads/blog-cover", formData);
@@ -85,7 +102,7 @@ export default function BlogForm(props: BlogFormProps) {
   // function handleApplyImage(img: ImageResponse) {
   //   setCoverImagePreview(img.url);
   //   setCoverImagePath(img.path);
-  //   setCoverImageFile(null);   
+  //   setCoverImageFile(null);
   // }
 
   function handleClearImage() {
@@ -99,11 +116,11 @@ export default function BlogForm(props: BlogFormProps) {
     setCoverImagePath("");
   }
 
-  function handlePickerApply (img: ImageResponse) {
+  function handlePickerApply(img: ImageResponse) {
     if (pickerMode === "cover") {
       setCoverImagePreview(img.url);
       setCoverImagePath(img.path);
-      setCoverImageFile(null);  
+      setCoverImageFile(null);
       setCoverSelectedImage(img);
     } else {
       pendingInsertCb?.(img.url);
@@ -115,7 +132,7 @@ export default function BlogForm(props: BlogFormProps) {
     setPickerMode("cover");
     setShowImagePicker(true);
   }
- 
+
   function onOpenEditorImagePicker(cb: (url: string) => void) {
     setPickerMode("editor");
     setPendingInsertCb(() => cb);
@@ -138,8 +155,13 @@ export default function BlogForm(props: BlogFormProps) {
 
   // *************--------Handle save button logic------------************//
   const saveBlog = async (published: boolean) => {
-    if (!title.trim() || !content.trim() || !author.trim()) {
-      toast.error("Title,content or author can't be empty");
+    if (
+      !title.trim() ||
+      !category.trim() ||
+      !content.trim() ||
+      !author.trim()
+    ) {
+      toast.error("Title,content,category or author can't be empty");
       return;
     }
     if (!coverImageFile && !coverSelectedImage && !coverImagePath) {
@@ -155,6 +177,7 @@ export default function BlogForm(props: BlogFormProps) {
       title: title.trim(),
       author: author.trim(),
       excerpt: excerpt.trim(),
+      category: category.trim(),
       tags: tags.join(","),
       slug: doneSlug,
       coverImagePath: coverImagePath,
@@ -233,6 +256,8 @@ export default function BlogForm(props: BlogFormProps) {
           removeTag={removeTag}
         />
 
+        <BlogCategorySection category={category} setCategory={setCategory} />
+
         <BlogContentSection
           onOpenEditorImagePicker={onOpenEditorImagePicker}
           excerpt={excerpt}
@@ -257,8 +282,12 @@ export default function BlogForm(props: BlogFormProps) {
         onApplyImage={handlePickerApply}
         selectedImage={pickerSelectedImage}
         setSelectedImage={setPickerSelectedImage}
-        title={pickerMode==="cover" ? "Choose cover image" : "Insert image"}
-        subTitle={pickerMode==="cover" ? "Choose image for blog cover" : "Choose image for blog content"}
+        title={pickerMode === "cover" ? "Choose cover image" : "Insert image"}
+        subTitle={
+          pickerMode === "cover"
+            ? "Choose image for blog cover"
+            : "Choose image for blog content"
+        }
       />
     </Card>
   );
