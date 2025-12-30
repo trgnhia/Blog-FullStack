@@ -123,10 +123,10 @@ export default function PostCardSlider() {
                 <PostCard
                   key={idx}
                   title={item.title}
-                  description={item.description}
+                  excerpt={item.description}
                   category={item.category}
-                  dateText="12 July, 2025"
-                  readTime="6 mins read"
+                  timeAgo="12 July, 2025"
+                  author="6 mins read"
                   imageSrc="/images/s6_1.jpg"
                 />
               </div>

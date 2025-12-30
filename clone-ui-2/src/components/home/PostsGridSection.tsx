@@ -1,6 +1,9 @@
-import PostCard from "./PostCard";
+"use client";
 
-const IMG = "/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg";
+import PostCard from "./PostCard";
+import { BlogViewModel } from "@/types/blog";
+import { useState } from "react";
+import { MdArrowOutward } from "react-icons/md";
 
 const MOCK_POSTS = [
   {
@@ -41,7 +44,18 @@ const MOCK_POSTS = [
   },
 ];
 
-export default function PostsGridSection() {
+export default function PostsGridSection({
+  blogs,
+}: {
+  blogs: BlogViewModel[];
+}) {
+  const [visibleBlogsCount, setVisibleBlogsCount] = useState<number>(6);
+  const visibleBlogs = blogs.slice(0, visibleBlogsCount);
+  const hasMore = visibleBlogsCount < blogs.length;
+
+  function handleLoadMore() {
+    setVisibleBlogsCount((prev) => Math.min(prev + 6, blogs.length));
+  }
   return (
     <section className="py-16 pt-2">
       <div className="mx-auto w-full max-w-6xl px-6">
@@ -54,25 +68,35 @@ export default function PostsGridSection() {
 
         {/* Grid */}
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {MOCK_POSTS.map((p, idx) => (
+          {visibleBlogs.map((p, idx) => (
             <PostCard
               key={idx}
               title={p.title}
-              description={p.description}
-              category={p.category}
-              dateText="12 July, 2025"
-              readTime="6 mins read"
-              imageSrc={IMG}
+              excerpt={p.excerpt}
+              category={p.tagsArray[0]}
+              author={p.author}
+              timeAgo={p.timeAgo}
+              imageSrc={p.coverImageUrl}
             />
           ))}
         </div>
 
-        {/* Load more */}
         <div className="mt-14 text-center">
-          <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-6 py-3 text-[14px] font-bold text-white shadow hover:opacity-95">
-            Load more posts
-            <span className="inline-block">↗</span>
-          </button>
+          {hasMore ? (
+            <button
+              onClick={handleLoadMore}
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-6 py-3 text-[14px] font-bold text-white shadow hover:opacity-95"
+            >
+              Load more posts
+              <span className="inline-block">
+                <MdArrowOutward size={20} />
+              </span>
+            </button>
+          ) : (
+            <p className="inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-white/60 backdrop-blur-sm">
+              No more posts to load
+            </p>
+          )}
         </div>
       </div>
     </section>

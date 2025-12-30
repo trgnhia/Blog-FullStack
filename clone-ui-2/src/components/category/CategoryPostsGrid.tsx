@@ -63,10 +63,10 @@ export default function CategoryPostsGrid({
             <PostCard
               key={idx}
               title={p.title}
-              description={p.description}
+              excerpt={p.description}
               category={p.category}
-              dateText="12 July, 2025"
-              readTime="6 mins read"
+              timeAgo="12 July, 2025"
+              author="6 mins read"
               imageSrc={IMG}
             />
           ))}

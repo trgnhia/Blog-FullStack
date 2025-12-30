@@ -2,19 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 type PostCardProps = {
   title: string;
-  description: string;
+  excerpt: string;
   category: string;
-  dateText: string;
-  readTime: string;
+  author: string;
+  timeAgo: string;
   imageSrc: string; // /uploads/...
 };
 
 export default function PostCard({
   title,
-  description,
+  excerpt,
   category,
-  dateText,
-  readTime,
+  author,
+  timeAgo,
   imageSrc,
 }: PostCardProps) {
   return (
@@ -31,21 +31,18 @@ export default function PostCard({
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             priority={false}
+            unoptimized
           />
         </div>
 
         {/* Category pill (top-right) */}
-        <div className="absolute right-5 top-5">
-          <span className="rounded-full bg-black/60 px-4 py-2 text-[12px] font-semibold text-white backdrop-blur">
-            {category}
-          </span>
-        </div>
-
-        {/* Author avatars (bottom-left) – chỉ là khung */}
-        <div className="absolute bottom-5 left-5 flex -space-x-3">
-          <div className="h-10 w-10 rounded-full border border-white/20 bg-white/10" />
-          <div className="h-10 w-10 rounded-full border border-white/20 bg-white/10" />
-        </div>
+        {category && (
+          <div className="absolute right-5 top-5">
+            <span className="rounded-full bg-black/60 px-4 py-2 text-[12px] font-semibold text-white backdrop-blur">
+              {category}
+            </span>
+          </div>
+        )}
       </Link>
 
       {/* Content */}
@@ -57,13 +54,13 @@ export default function PostCard({
         </h4>
 
         <p className="mt-3 text-[15px] leading-relaxed text-white/80">
-          {description}
+          {excerpt}
         </p>
 
         <div className="mt-6 flex items-center gap-4 text-[12px] font-medium text-white/60">
-          <span>{dateText}</span>
+          <span>{author}</span>
           <span className="h-[1px] w-6 bg-white/30" />
-          <span>{readTime}</span>
+          <span>{timeAgo}</span>
         </div>
       </div>
     </article>

@@ -32,7 +32,7 @@ export default async function Page() {
             <TrendingTopics />
           </div>
           <div className="pt-6">
-            <PostsGridSection />
+            <PostsGridSection blogs={gridBlogs}/>
           </div>
           <section className="mt-10 pt-10">
             <div className="relative left-1/2 -ml-[50vw] w-screen">
