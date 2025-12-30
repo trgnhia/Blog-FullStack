@@ -6,8 +6,14 @@ import HeroSection from "@/components/home/HeroSection";
 import PostsGridSection from "@/components/home/PostsGridSection";
 import TopAuthorsSection from "@/components/home/TopAuthorsSection";
 import Footer from "@/components/home/Footer";
+import { fetchBlogs } from "@/services/blogService";
+import { toBlogViewModels   } from "@/utils/blogMapper";
 
-export default function Page() {
+export default async function Page() {
+  const rawBlogs = await fetchBlogs();
+  const viewModelBlogs = toBlogViewModels(rawBlogs);
+  const heroBlogs = viewModelBlogs.slice(0,2);
+  const gridBlogs = viewModelBlogs.slice(2);
   return (
     <div className="min-h-screen">
       <HeaderShell />
@@ -15,7 +21,7 @@ export default function Page() {
       <main className="pb-20">
         <Container>
           <div className="pt-6">
-            <HeroSection />
+            <HeroSection blogs={heroBlogs}/>
           </div>
   
           <div className="pt-10">

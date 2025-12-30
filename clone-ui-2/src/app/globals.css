@@ -40,3 +40,33 @@
 
 /* swiper pagination CSS - clone---------------------------------------------------------------------- */
 
+/* Container pagination */
+.swiper-pagination {
+  display: inline-flex !important;
+  gap: 8px;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(28, 27, 27, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Bullet */
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  opacity: 1;             /* đừng để mặc định 0.2 */
+  background: rgba(249, 242, 242, 0.884);
+  border-radius: 999px;
+  transition: all 0.25s;
+}
+
+/* Bullet active */
+.swiper-pagination-bullet-active {
+  width: px;            /* active dài ra */
+  background: rgba(215, 68, 231, 0.9);
+}
