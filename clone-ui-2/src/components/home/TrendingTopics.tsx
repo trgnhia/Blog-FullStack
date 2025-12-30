@@ -9,37 +9,37 @@ type Topic = {
 const TOPICS: Topic[] = [
   {
     title: "Inspiration",
-    href: "/category/inspiration",
+    href: "/inspiration",
     imageUrl:
       "images/home/inspiration.jpg",
   },
   {
     title: "Technology",
-    href: "/category/technology",
+    href: "/technology",
     imageUrl:
       "images/home/technology.jpg",
   },
   {
     title: "Automotive",
-    href: "/category/automotive",
+    href: "/automotive",
     imageUrl:
       "images/home/automotive.jpg",
   },
   {
     title: "Science",
-    href: "/category/science",
+    href: "/science",
     imageUrl:
       "images/home/science.jpg",
   },
   {
     title: "Culture",
-    href: "/category/culture",
+    href: "/culture",
     imageUrl:
       "images/home/culture.jpg",
   },
   {
     title: "Gaming",
-    href: "/category/gaming",
+    href: "/gaming",
     imageUrl:
       "images/home/gaming.jpg",
   },
@@ -63,7 +63,7 @@ export default function TrendingTopics() {
 function TopicCard({ topic }: { topic: Topic }) {
   return (
     <Link
-      href="/category"
+      href={topic.href}
       className="group relative block w-full overflow-hidden rounded-[26px] bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1"
       aria-label={topic.title}
     >

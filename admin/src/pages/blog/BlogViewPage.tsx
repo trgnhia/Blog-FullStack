@@ -10,7 +10,7 @@ const BlogViewPage = () => {
   const [blog, setBlog] = useState<BlogResponse>();
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await axios.get<BlogResponse>(`/api/blogs/${blogSlug}`);
+      const response = await axios.get<BlogResponse>(`/api/blogs/slug/${blogSlug}`);
       setBlog(response.data);
     };
     fetchBlog();

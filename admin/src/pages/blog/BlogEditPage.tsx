@@ -9,7 +9,7 @@ const BlogEditPage = () => {
   const [blog, setBlog] = useState<BlogResponse>();
   useEffect(() => {
     const fetchBlog = async () => {
-      const res = await axios.get<BlogResponse>(`/api/blogs/${blogSlug}`);
+      const res = await axios.get<BlogResponse>(`/api/blogs/slug/${blogSlug}`);
       setBlog(res.data);
     };
     fetchBlog();

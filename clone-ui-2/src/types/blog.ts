@@ -7,7 +7,8 @@ export interface BlogSummary {
   author: string;
   tags: string;     
   createdAt: string;
-  content: string
+  content: string;
+  category: string
 }
 
 export interface BlogViewModel extends BlogSummary {

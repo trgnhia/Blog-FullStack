@@ -8,7 +8,7 @@ import { RxArrowTopRight } from "react-icons/rx";
 import PostCard from "../home/PostCard";
 import { useRef } from "react";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
-
+import { BlogViewModel } from "@/types/blog";
 const MOCK_POSTS = [
   {
     title: "The Joy of Doing Less and Living a More Meaningful Life",
@@ -48,7 +48,7 @@ const MOCK_POSTS = [
   },
 ];
 
-export default function PostCardSlider() {
+export default function PostCardSlider({blogs} : {blogs: BlogViewModel[]}) {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
@@ -117,18 +117,18 @@ export default function PostCardSlider() {
           modules={[FreeMode, Navigation]}
           className="md:px-12 pb-10"
         >
-          {MOCK_POSTS.map((item, idx) => (
+          {blogs.map((item, idx) => (
             <SwiperSlide key={item.title} className="h-auto">
               <div className="h-full">
                 <PostCard
                   key={idx}
-                  slug={item.description}
+                  slug={item.slug}
                   title={item.title}
-                  excerpt={item.description}
+                  excerpt={item.excerpt}
                   category={item.category}
-                  timeAgo="12 July, 2025"
-                  author="6 mins read"
-                  imageSrc="/images/s6_1.jpg"
+                  timeAgo={item.timeAgo}
+                  author={item.author}
+                  imageSrc={item.coverImageUrl}
                 />
               </div>
             </SwiperSlide>

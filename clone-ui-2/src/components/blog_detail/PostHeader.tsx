@@ -6,7 +6,7 @@ type Props = {
   title: string;
   authorName: string;
   authorAvatar: string;
-  dateText: string;
+  timeAgo: string;
   readTime: string;
   commentsCount?: number;
   viewsCount?: number;
@@ -18,7 +18,7 @@ export default function PostHeader({
   title,
   authorName,
   authorAvatar,
-  dateText,
+  timeAgo,
   readTime,
   commentsCount = 98,
   viewsCount = 168,
@@ -51,17 +51,24 @@ export default function PostHeader({
 
         {/* meta row */}
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-          {/* left: author (text-start giống họ) */}
           <div className="flex items-center gap-3 text-left">
-            <img
-              src={authorAvatar}
-              alt={authorName}
-              className="h-12 w-12 rounded-full object-cover"
-            />
+          <div
+              className="
+                flex h-10 w-10 items-center justify-center
+                rounded-full
+                ring-2 ring-white/70
+                bg-white/15
+                text-sm font-semibold text-white
+                select-none
+                "
+              aria-label="Author"
+            >
+              {authorAvatar.charAt(0).toUpperCase()}
+            </div>
             <div>
               <p className="text-sm font-semibold text-white">{authorName}</p>
               <div className="mt-1 flex items-center gap-2 text-xs text-white/60">
-                <span>{dateText}</span>
+                <span>{timeAgo}</span>
                 <span className="h-[2px] w-4 bg-white/20" />
                 <span>{readTime}</span>
               </div>

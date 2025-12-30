@@ -74,7 +74,7 @@ export default function PostsGridSection({
               title={p.title}
               slug={p.slug}
               excerpt={p.excerpt}
-              category={p.tagsArray[0]}
+              category={p.category}
               author={p.author}
               timeAgo={p.timeAgo}
               imageSrc={p.coverImageUrl}

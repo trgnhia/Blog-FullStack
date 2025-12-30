@@ -7,7 +7,7 @@ export default function HeroCardSmall({ blog }: { blog: BlogViewModel }) {
       <div className="relative h-full overflow-hidden rounded-[38px] bg-zinc-800">
         {/* Image */}
         <a
-          href={`blogs/${blog.slug}`}
+          href={`/blogs/${blog.slug}`}
           className="block h-full min-h-[420px] lg:min-h-[520px] w-full"
         >
           <Image
@@ -34,7 +34,7 @@ export default function HeroCardSmall({ blog }: { blog: BlogViewModel }) {
           </div>
 
           <h3 className="mt-2 font-serif text-2xl font-semibold leading-snug text-white">
-          <Link href={`blogs/${blog.slug}`} className="hover:underline">
+          <Link href={`/blogs/${blog.slug}`} className="hover:underline">
               {blog.title}
             </Link>
           </h3>

@@ -23,7 +23,7 @@ export default function PostCard({
     <article className="relative">
       {/* Image */}
       <Link
-        href={`blogs/${slug}`}
+        href={`/blogs/${slug}`}
         className="group block overflow-hidden rounded-[28px] bg-white/5"
       >
         <div className="relative aspect-[684/524] w-full">
@@ -50,7 +50,7 @@ export default function PostCard({
       {/* Content */}
       <div className="mt-5">
         <h4 className="font-serif text-[25px] leading-tight text-white">
-          <Link href={`blogs/${slug}`} className="hover:underline">
+          <Link href={`/blogs/${slug}`} className="hover:underline">
             {title}
           </Link>
         </h4>

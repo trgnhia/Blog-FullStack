@@ -7,6 +7,8 @@ import CategoryPostsGrid from "@/components/category/CategoryPostsGrid";
 import CategoriesBlock from "@/components/category/CategoriesBlock";
 import Footer from "@/components/category/Footer";
 import CategorySideImages from "@/components/category/CategorySideImages";
+import { toBlogViewModels } from "@/utils/blogMapper";
+import { fetchBlogsByCategory } from "@/services/blogService";
 const slides = [
   "/images/category/image_2.jpg",
   "/images/category/image_1.jpg",
@@ -17,7 +19,13 @@ const slides = [
 
 const images = slides.map((src) => ({ src }));
 
-export default function CategoryPage() {
+export default async function CategoryPage({params} : {params: Promise<{category: string}> }) {
+  const {category} = await params;
+  const rawBlogs = await fetchBlogsByCategory(category);
+  const categoryBlogs = toBlogViewModels(rawBlogs);
+  const featuredPost = categoryBlogs[0];
+  const gridBlogs = categoryBlogs.slice(1);
+  const trendingBlogs = categoryBlogs.slice(0,5);
   return (
     <>
       <HeaderShell />
@@ -27,11 +35,11 @@ export default function CategoryPage() {
             {/* LEFT */}
             <div className="col-span-12 lg:col-span-8">
               <CategoryHeader />
-              <CategoryFeaturedPost />
-              <CategoryPostsGrid columns={2} />
+              <CategoryFeaturedPost blog={featuredPost}/>
+              <CategoryPostsGrid columns={2} blogs={gridBlogs} />
             </div>
             <div className="col-span-12 lg:col-span-4">
-              <WeeklyTrending />
+              <WeeklyTrending blogs={trendingBlogs} />
               <CategoriesBlock />
               <div className="pt-10">
                 <CategorySideImages images={images} />
