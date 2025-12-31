@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 type Topic = {
   title: string;
   href: string;
@@ -10,38 +10,32 @@ const TOPICS: Topic[] = [
   {
     title: "Inspiration",
     href: "/inspiration",
-    imageUrl:
-      "images/home/inspiration.jpg",
+    imageUrl: "/images/home/inspiration.jpg",
   },
   {
     title: "Technology",
     href: "/technology",
-    imageUrl:
-      "images/home/technology.jpg",
+    imageUrl: "/images/home/technology.jpg",
   },
   {
     title: "Automotive",
     href: "/automotive",
-    imageUrl:
-      "images/home/automotive.jpg",
+    imageUrl: "/images/home/automotive.jpg",
   },
   {
     title: "Science",
     href: "/science",
-    imageUrl:
-      "images/home/science.jpg",
+    imageUrl: "/images/home/science.jpg",
   },
   {
     title: "Culture",
     href: "/culture",
-    imageUrl:
-      "images/home/culture.jpg",
+    imageUrl: "/images/home/culture.jpg",
   },
   {
     title: "Gaming",
     href: "/gaming",
-    imageUrl:
-      "images/home/gaming.jpg",
+    imageUrl: "/images/home/gaming.jpg",
   },
 ];
 
@@ -67,13 +61,15 @@ function TopicCard({ topic }: { topic: Topic }) {
       className="group relative block w-full overflow-hidden rounded-[26px] bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1"
       aria-label={topic.title}
     >
-      {/* background image */}
-      <div
-        className="h-[160px] w-full bg-cover bg-center"
-        style={{ backgroundImage: `url("${topic.imageUrl}")` }}
-      >
-        {/* overlay nhẹ để chữ đọc rõ hơn */}
-        <div className="h-full w-full bg-black/10" />
+      <div className="relative h-[160px] w-full">
+        <Image
+          src={topic.imageUrl}
+          alt={topic.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
       {/* label pill */}
@@ -83,7 +79,7 @@ function TopicCard({ topic }: { topic: Topic }) {
         </span>
       </div>
 
-      {/* hover shine nhẹ (optional) */}
+      {/* hover shine */}
       <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <span className="absolute -left-1/2 top-0 h-full w-1/2 skew-x-[-25deg] bg-gradient-to-r from-white/0 via-white/25 to-white/0" />
       </span>

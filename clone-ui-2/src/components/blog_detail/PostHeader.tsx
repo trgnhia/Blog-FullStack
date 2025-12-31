@@ -28,7 +28,7 @@ export default function PostHeader({
       {/* ====== TITLE BLOCK (col-lg-8 mx-auto text-center) ====== */}
       <div className="mx-auto w-full lg:max-w-[66.666%] text-center">
         {/* category */}
-        <span className="inline-flex rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-2 text-xs font-semibold text-white">
+        <span className="inline-flex rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-2 text-xs font-semibold text-white capitalize">
           {category}
         </span>
 

@@ -1,8 +1,18 @@
 import "./globals.css";
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
+
+
 export const metadata = {
-  title: "My blog",
-  description: "Next.js + Tailwind layout skeleton",
+  metadatBase: new URL("https://domain.com"),
+  title: {
+    default: "My blog",
+    template: "%s | My blog",
+  },
+   description: "A modern blog about technology, culture, and inspiration.",
+   openGraph: {
+    type: "website",
+    siteName: "MyBlog",
+   },
 };
 
 export default function RootLayout({

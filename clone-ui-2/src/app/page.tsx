@@ -8,7 +8,19 @@ import TopAuthorsSection from "@/components/home/TopAuthorsSection";
 import Footer from "@/components/home/Footer";
 import { fetchBlogs } from "@/services/blogService";
 import { toBlogViewModels   } from "@/utils/blogMapper";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Read the latest articles on technology, culture, science and inspiration.",
+  openGraph: {
+    title: "My blog",
+    description:
+      "Read the latest articles on technology, culture, science and inspiration.",
+    url: "/",
+  },
+};
 export default async function Page() {
   const rawBlogs = await fetchBlogs();
   const viewModelBlogs = toBlogViewModels(rawBlogs);
