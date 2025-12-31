@@ -9,6 +9,8 @@ import CategoryFooter from "@/components/category/CategoryFooter";
 import CategorySideImages from "@/components/category/CategorySideImages";
 import { toBlogViewModels } from "@/utils/blogMapper";
 import { fetchBlogsByCategory } from "@/services/blogService";
+import type { Metadata } from "next";
+
 const slides = [
   "/images/category/image_2.jpg",
   "/images/category/image_1.jpg",
@@ -18,6 +20,30 @@ const slides = [
 ];
 
 const images = slides.map((src) => ({ src }));
+
+export async function generateMetadata(
+  { params }: {  params: Promise<{ category: string }> }
+): Promise<Metadata> {
+  const { category } = await params;           
+  const categoryLabel = decodeURIComponent(category); 
+
+  const title = categoryLabel;
+  const description = `Explore ${categoryLabel} articles and trending posts on My blog.`;
+  const ogImage = `/images/home/${category}.jpg`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `${categoryLabel} | My blog`,
+      description,
+      url: `/${category}`,
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${categoryLabel} cover` }],
+    },
+    alternates: { canonical: `/${category}` },
+  };
+}
 
 export default async function CategoryPage({
   params,

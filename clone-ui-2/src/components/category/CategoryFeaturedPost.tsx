@@ -9,7 +9,7 @@ export default function CategoryFeaturedPost({
   return (
     <article className="mt-10">
       {/* Image */}
-      <Link href="#">
+      <Link href={`/blogs/${blog.slug}`}>
         <div className="overflow-hidden rounded-2xl">
           <Image
             src={blog.coverImageUrl} // thay bằng src bạn đã dùng
@@ -22,7 +22,7 @@ export default function CategoryFeaturedPost({
         </div>
       </Link>
 
-      <Link href="#">
+      <Link href={`/blogs/${blog.slug}`}>
         <h2 className="mt-6 text-3xl font-serif text-white leading-snug hover:underline">
           {blog.title}
         </h2>

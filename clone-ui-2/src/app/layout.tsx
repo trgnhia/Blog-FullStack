@@ -3,7 +3,7 @@ import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 
 
 export const metadata = {
-  metadatBase: new URL("https://domain.com"),
+  metadataBase: new URL("https://domain.com"),
   title: {
     default: "My blog",
     template: "%s | My blog",
@@ -12,6 +12,14 @@ export const metadata = {
    openGraph: {
     type: "website",
     siteName: "MyBlog",
+    images: [
+      {
+        url: "/image_5.jpg", 
+        width: 1200,
+        height: 630,
+        alt: "MyBlog",
+      },
+    ],
    },
 };
 
