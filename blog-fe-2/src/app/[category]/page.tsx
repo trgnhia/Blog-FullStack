@@ -10,6 +10,7 @@ import CategorySideImages from "@/components/category/CategorySideImages";
 import { toBlogViewModels } from "@/utils/blogMapper";
 import { fetchBlogsByCategory } from "@/services/blogService";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 const slides = [
   "/images/category/image_2.jpg",
@@ -53,6 +54,10 @@ export default async function CategoryPage({
   const { category } = await params;
   const rawBlogs = await fetchBlogsByCategory(category);
   const categoryBlogs = toBlogViewModels(rawBlogs);
+  if (!categoryBlogs.length) {
+    notFound();
+  }
+  
   const numberOfBlogs = categoryBlogs.length;
   const featuredPost = categoryBlogs[0];
   const gridBlogs = categoryBlogs.slice(1);

@@ -6,6 +6,7 @@ import PostCardSlider from "@/components/blog_detail/PostCardSlider";
 import Container from "@/components/ui/Container";
 import { fetchBlogBySlug, fetchBlogs } from "@/services/blogService";
 import { toBlogViewModel, toBlogViewModels } from "@/utils/blogMapper";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 export async function generateMetadata(
@@ -52,6 +53,9 @@ export default async function BlogDetailPage({
   const blog = toBlogViewModel(blogRaw);
   const allBlogsRaw = await fetchBlogs();
   const blogs = toBlogViewModels(allBlogsRaw).slice(0, 8);
+  if (!blog) {
+    notFound(); 
+  }
   return (
     <>
       <HeaderShell />
