@@ -1,5 +1,5 @@
 import HeaderShell from "@/components/layout/HeaderShell";
-import CategoryChips from "@/components/sections/CategoryChips";
+import CategoryChips from "@/components/home/CategoryChips";
 import TrendingTopics from "@/components/home/TrendingTopics";
 import Container from "@/components/ui/Container";
 import HeroSection from "@/components/home/HeroSection";

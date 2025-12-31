@@ -1,28 +1,35 @@
 import Image from "next/image";
 
-export default function CategoryHeader() {
+type Props = {
+  category: string;
+  numberOfBlogs: number;
+  src : string;
+}
+
+export default function CategoryHeader({category, numberOfBlogs, src} : Props) {
   return (
     <section className="pt-6">
       {/* Avatar + Title */}
       <div className="flex flex-wrap items-center gap-4">
         {/* Avatar */}
-        <div className="shrink-0">
+        <div className="shrink-0  w-[100px] h-[100px] overflow-hidden rounded-full">
           <Image
-            src="http://localhost:8081/uploads/blogImages/c447dbd1-2c3a-4f20-83dc-f0f749c5d4d5.jpg"  
+            src={src}
             alt="Lifestyle"
             width={100}
             height={100}
-            className="rounded-full"
+            className="h-full w-full object-cover"
+            unoptimized
           />
         </div>
 
         {/* Title + meta */}
         <div>
           <h1 className="text-4xl font-serif text-white mb-1">
-            Lifestyle
+            {category}
           </h1>
           <p className="text-white/60 text-lg">
-            20 articles
+            {numberOfBlogs} articles
           </p>
         </div>
       </div>

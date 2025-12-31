@@ -23,6 +23,7 @@ export default async function CategoryPage({params} : {params: Promise<{category
   const {category} = await params;
   const rawBlogs = await fetchBlogsByCategory(category);
   const categoryBlogs = toBlogViewModels(rawBlogs);
+  const numberOfBlogs = categoryBlogs.length;
   const featuredPost = categoryBlogs[0];
   const gridBlogs = categoryBlogs.slice(1);
   const trendingBlogs = categoryBlogs.slice(0,5);
@@ -34,7 +35,7 @@ export default async function CategoryPage({params} : {params: Promise<{category
           <div className="grid grid-cols-12 gap-10">
             {/* LEFT */}
             <div className="col-span-12 lg:col-span-8">
-              <CategoryHeader />
+              <CategoryHeader category={category} numberOfBlogs={numberOfBlogs} src={`/images/home/${category}.jpg`}/>
               <CategoryFeaturedPost blog={featuredPost}/>
               <CategoryPostsGrid columns={2} blogs={gridBlogs} />
             </div>
