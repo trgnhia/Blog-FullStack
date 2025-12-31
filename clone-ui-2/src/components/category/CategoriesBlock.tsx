@@ -3,8 +3,8 @@ import Link from "next/link";
 const MOCK_CATEGORIES = [
   { name: "Inspiration", count: 10, href: "/inspiration" },
   { name: "Design", count: 10, href: "/design" },
-  { name: "Process", count: 10, href: "/process" },
-  { name: "Tools", count: 10, href: "/tools" },
+  { name: "Law", count: 10, href: "/law" },
+  { name: "Fashion", count: 10, href: "/fashion" },
   { name: "Lifestyle", count: 10, href: "/lifestyle" },
 ];
 

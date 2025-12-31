@@ -1,7 +1,7 @@
 import "./globals.css";
-
+import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 export const metadata = {
-  title: "Elora Skeleton",
+  title: "My blog",
   description: "Next.js + Tailwind layout skeleton",
 };
 
@@ -12,7 +12,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#1e1e1e ] text-white antialiased">{children}</body>
+      <body className="bg-[#1e1e1e] text-white antialiased">
+        {children}
+        <ScrollToTopButton />
+      </body>
     </html>
   );
 }

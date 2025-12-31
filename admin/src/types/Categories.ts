@@ -8,7 +8,8 @@ export const BLOG_CATEGORIES = [
   "automotive",
   "culture",
   "inspiration",
-  "science"
+  "science",
+  "law"
 ] as const;
 
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];

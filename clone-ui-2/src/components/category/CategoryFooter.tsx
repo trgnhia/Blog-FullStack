@@ -2,7 +2,7 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 
 const FOOTER_LINKS = {
-  categories: ["Lifestyle", "Business", "Science", "Technology"],
+  categories: ["culture", "automotive", "science", "technology"],
   company: ["Mission & Vision", "Become an author", "Careers", "Press & Media"],
   policy: ["Private policy", "Term & Condition", "Subscribe", "Advertise"],
 };
@@ -18,7 +18,7 @@ function SocialBtn({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function Footer() {
+export default function CategoryFooter() {
   return (
     <footer className="mt-16 overflow-hidden">
       {/* full-width divider (tràn 2 bên) */}
@@ -35,7 +35,7 @@ export default function Footer() {
                 href="/"
                 className="text-4xl font-extrabold tracking-tight text-[#d65778]"
               >
-                Elora
+                MyBlog
               </Link>
 
               <p className="mt-4 max-w-md text-sm leading-6 text-white/70">
@@ -62,7 +62,7 @@ export default function Footer() {
                   <ul className="space-y-4 text-white/55">
                     {FOOTER_LINKS.categories.map((t) => (
                       <li key={t}>
-                        <a href="#" className="transition hover:text-white">
+                        <a href={`/${t}`}  className="transition hover:text-white capitalize">
                           {t}
                         </a>
                       </li>
@@ -76,9 +76,9 @@ export default function Footer() {
                   <ul className="space-y-4 text-white/55">
                     {FOOTER_LINKS.company.map((t) => (
                       <li key={t}>
-                        <a href="#" className="transition hover:text-white">
+                        <div  className="transition hover:text-white">
                           {t}
-                        </a>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -90,9 +90,9 @@ export default function Footer() {
                   <ul className="space-y-4 text-white/55">
                     {FOOTER_LINKS.policy.map((t) => (
                       <li key={t}>
-                        <a href="#" className="transition hover:text-white">
+                        <div className="transition hover:text-white">
                           {t}
-                        </a>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -103,7 +103,7 @@ export default function Footer() {
             {/* BOTTOM */}
             <div className="col-span-12 pt-10">
               <p className="text-center text-sm text-white/50 lg:text-left">
-                © 2025 <span className="text-white">Elora</span>. All Rights
+                © 2025 <span className="text-white">TranNghia</span>. All Rights
                 Reserved.
               </p>
             </div>
