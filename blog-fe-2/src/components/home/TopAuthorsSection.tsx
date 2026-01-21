@@ -47,13 +47,12 @@ function SocialIcon({ type }: { type: Social }) {
       : "Bē";
 
   return (
-    <a
-      href="#"
+    <div
       aria-label={type}
       className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-sm font-semibold text-white/80 ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-white/10"
     >
       {label}
-    </a>
+    </div>
   );
 }
 

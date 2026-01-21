@@ -13,6 +13,7 @@ import BlogTagsSection from "./BlogTagsSection";
 import BlogContentSection from "./BlogContentSection";
 import BlogCategorySection from "./BlogCategorySection";
 import { type BlogCategory } from "../../../types/Categories";
+import { api } from "../../../api/apiClients";
 type BlogFormProps = {
   mode: "create" | "edit";
   blog?: BlogResponse;
@@ -87,7 +88,7 @@ export default function BlogForm(props: BlogFormProps) {
     }
     const formData = new FormData();
     formData.append("file", file);
-    const uploadImage = await axios.post("/api/uploads/blog-cover", formData);
+    const uploadImage = await api.post("/api/uploads/blog-cover", formData);
     setCoverImagePath(uploadImage.data.path);
   }
   // prevent leak data
@@ -186,7 +187,7 @@ export default function BlogForm(props: BlogFormProps) {
     };
     if (mode === "create") {
       try {
-        await axios.post("/api/blogs", blogReq);
+        await api.post("/api/blogs", blogReq);
         if (published) {
           toast.success("Create blog and publish success 🎉");
         } else {
@@ -201,7 +202,7 @@ export default function BlogForm(props: BlogFormProps) {
       }
     } else {
       try {
-        await axios.put(`/api/blogs/${blog?.id}`, blogReq);
+        await api.put(`/api/blogs/${blog?.id}`, blogReq);
         if (published) {
           toast.success("Update blog and publish success 🎉");
         } else {

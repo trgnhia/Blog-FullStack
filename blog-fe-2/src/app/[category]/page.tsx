@@ -30,7 +30,9 @@ export async function generateMetadata(
 
   const title = categoryLabel;
   const description = `Explore ${categoryLabel} articles and trending posts on My blog.`;
-  const ogImage = `/images/home/${category}.jpg`;
+  
+  const ogImage = `https://blog-fe-2.vercel.app/images/home/${category}.jpg`;
+
 
   return {
     title,

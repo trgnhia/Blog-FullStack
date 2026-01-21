@@ -1,9 +1,10 @@
-import axios from "axios";
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from "react-toastify";
 import {mutate} from 'swr';
 import type { BlogResponse } from "../../types/Blog";
+import { api } from '../../api/apiClients';
 type Props = {
   showDeleteModal : boolean,
   setShowDeleteModal : (value : boolean) => void,
@@ -16,7 +17,7 @@ export default function BlogDeleteModal(props : Props) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/blogs/${id}`)
+      await api.delete(`/api/blogs/${id}`)
       toast.success("Delete Modal success 🎉");
       handleClose();
       mutate<BlogResponse[]>(

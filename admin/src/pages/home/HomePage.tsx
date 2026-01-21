@@ -6,24 +6,37 @@ import DashboardOverview from "./DashboardOverview";
 import TableSection from "./table/TableSection";
 import useSWR from 'swr';
 import type {Fetcher} from 'swr';
+import { useAuth } from "../../auth/AuthContext";
 
 const BLOG_PER_PAGE = 8;
-
-const fetcher : Fetcher<BlogResponse[], string> = (url) => {
-  return axios.get(url).then((res) => res.data);
-}
 
 
 const HomePage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [selectedId, setSelectedId] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const {data: blogs, error, isLoading} = useSWR<BlogResponse[]>("/api/blogs", fetcher);
+
+  const {accessToken} = useAuth();
+  const fetcher : Fetcher<BlogResponse[], string> = (url) => {
+    return axios.get(
+      url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      },
+    ).then((res) => res.data);
+  }
+  
+
+const { data: blogs, error, isLoading } =
+  useSWR<BlogResponse[]>(accessToken ? "/api/blogs" : null, fetcher);
+
+
   if (isLoading) {
     return (
       <>
-      <h4>Data is Fetching....</h4>
-    </>
+        <h4>Data is Fetching....</h4>
+      </>
     );
   }
   if(error) {

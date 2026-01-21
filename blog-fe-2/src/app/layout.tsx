@@ -3,7 +3,7 @@ import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 
 
 export const metadata = {
-  metadataBase: new URL("https://domain.com"),
+  metadataBase: new URL("https://blog-fe-2.vercel.app"),
   title: {
     default: "My blog",
     template: "%s | My blog",
