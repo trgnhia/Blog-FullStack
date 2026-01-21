@@ -1,0 +1,14 @@
+# Root-level environment
+.env*
+!.env.example
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
