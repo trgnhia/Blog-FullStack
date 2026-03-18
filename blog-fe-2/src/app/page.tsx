@@ -2,8 +2,9 @@ import HeaderShell from "@/components/layout/HeaderShell";
 import CategoryChips from "@/components/home/CategoryChips";
 import TrendingTopics from "@/components/home/TrendingTopics";
 import Container from "@/components/ui/Container";
-import HeroSection from "@/components/home/HeroSection";
-import PostsGridSection from "@/components/home/PostsGridSection";
+import HeroSection from "@/components/home/hero/HeroSection";
+import PostsGridSection from "@/components/home/posts/PostsGridSection";
+import AuthorRewardSection from "@/components/home/author_reward/AuthorRewardSection";
 import TopAuthorsSection from "@/components/home/TopAuthorsSection";
 import Footer from "@/components/home/Footer";
 import { fetchBlogs } from "@/services/blogService";
@@ -58,6 +59,9 @@ export default async function Page() {
           </div>
           <div className="pt-6">
             <PostsGridSection blogs={gridBlogs} />
+          </div>
+          <div className="pt-10">
+            <AuthorRewardSection />
           </div>
           <section className="mt-10 pt-10">
             <div className="relative left-1/2 -ml-[50vw] w-screen">

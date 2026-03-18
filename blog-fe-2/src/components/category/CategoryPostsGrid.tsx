@@ -1,5 +1,5 @@
 "use client";
-import PostCard from "@/components/home/PostCard";
+import PostCard from "@/components/home/posts/PostCard";
 import { BlogViewModel } from "@/types/blog";
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
@@ -12,10 +12,10 @@ export default function CategoryPostsGrid({ columns = 2, blogs }: Props) {
 
   const [visible, setVisible] = useState<number>(6);
   const hasMore = visible < blogs.length;
-  const visibleBlogs = blogs.slice(0,visible);
+  const visibleBlogs = blogs.slice(0, visible);
   const handleLoadMore = () => {
-    setVisible((prev) => Math.min(prev+6, blogs.length))
-    }
+    setVisible((prev) => Math.min(prev + 6, blogs.length))
+  }
   return (
     <section className="pt-8">
       <div className="w-full">
@@ -39,23 +39,23 @@ export default function CategoryPostsGrid({ columns = 2, blogs }: Props) {
             />
           ))}
         </div>
-           <div className="mt-14 text-center">
-                  {hasMore ? (
-                    <button
-                      onClick={handleLoadMore}
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-4 text-[16px] font-semibold text-white shadow hover:opacity-95"
-                    >
-                      Load more posts
-                      <span className="inline-block">
-                        <MdArrowOutward size={20} />
-                      </span>
-                    </button>
-                  ) : (
-                    <p className="inline-block rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm text-white/60 tracking-wide backdrop-blur-sm">
-                      No more posts to load
-                    </p>
-                  )}
-                </div>
+        <div className="mt-14 text-center">
+          {hasMore ? (
+            <button
+              onClick={handleLoadMore}
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-4 text-[16px] font-semibold text-white shadow hover:opacity-95"
+            >
+              Load more posts
+              <span className="inline-block">
+                <MdArrowOutward size={20} />
+              </span>
+            </button>
+          ) : (
+            <p className="inline-block rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm text-white/60 tracking-wide backdrop-blur-sm">
+              No more posts to load
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );

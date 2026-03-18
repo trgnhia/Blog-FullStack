@@ -15,7 +15,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
-  // click outside -> close mobile menu (if you want)
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
       if (!wrapRef.current) return;
@@ -40,7 +39,7 @@ export default function Navbar() {
         {NAV.map((item) => (
           <a
             key={item.label}
-            href="#"
+            href="/"
             className="relative text-sm text-white/80 hover:text-white transition"
           >
             {item.badge && (

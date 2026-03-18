@@ -5,50 +5,12 @@ import "swiper/css/free-mode";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import { RxArrowTopRight } from "react-icons/rx";
-import PostCard from "../home/PostCard";
+import PostCard from "../home/posts/PostCard";
 import { useRef } from "react";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { BlogViewModel } from "@/types/blog";
-const MOCK_POSTS = [
-  {
-    title: "The Joy of Doing Less and Living a More Meaningful Life",
-    description:
-      "White space is more than empty room — it’s a vital design element. Learn how to use it to improve readability, clarity, and visual focus.",
-    category: "Inspiration",
-  },
-  {
-    title: "The Art of Slow Travel and Finding Joy in Every Journey",
-    description:
-      "Everyday life is full of creative potential. Learn how to look deeper, reimagine familiar things, and turn them into unique design concepts.",
-    category: "Technology",
-  },
-  {
-    title: "Daily Mindset Shifts to Help You Stay Motivated and Consistent",
-    description:
-      "Everyday life is full of creative potential. Learn how to look deeper, reimagine familiar things, and turn them into unique design concepts.",
-    category: "Automotive",
-  },
-  {
-    title: "Why Authenticity Wins in the Age of Algorithms",
-    description:
-      "White space is more than empty room — it’s a vital design element. Learn how to use it to improve readability, clarity, and visual focus.",
-    category: "Science",
-  },
-  {
-    title: "How Technology is Shaping Modern Storytelling",
-    description:
-      "Bring your website to life! Follow this quick tutorial to add smooth, engaging animations with Framer Motion.",
-    category: "Culture",
-  },
-  {
-    title: "Behind the Scenes: Crafting a Brand That Speaks",
-    description:
-      "Bring your website to life! Follow this quick tutorial to add smooth, engaging animations with Framer Motion.",
-    category: "Automotive",
-  },
-];
 
-export default function PostCardSlider({blogs} : {blogs: BlogViewModel[]}) {
+export default function PostCardSlider({ blogs }: { blogs: BlogViewModel[] }) {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
@@ -84,8 +46,8 @@ export default function PostCardSlider({blogs} : {blogs: BlogViewModel[]}) {
           <GrLinkPrevious className="text-xl" />
         </button>
 
-         {/* NEXT */}
-         <button
+        {/* NEXT */}
+        <button
           ref={nextRef}
           className="
             hidden md:flex
