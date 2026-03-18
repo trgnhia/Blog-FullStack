@@ -58,7 +58,7 @@ function TopicCard({ topic }: { topic: Topic }) {
   return (
     <Link
       href={topic.href}
-      className="group relative block w-full overflow-hidden rounded-[26px] bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1"
+      className="group relative block w-full overflow-hidden rounded-[26px] bg-gray-100 dark:bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1"
       aria-label={topic.title}
     >
       <div className="relative h-[160px] w-full">
@@ -69,12 +69,12 @@ function TopicCard({ topic }: { topic: Topic }) {
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-black/5 dark:bg-black/10 transition-colors" />
       </div>
 
       {/* label pill */}
       <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center">
-        <span className="inline-flex items-center rounded-full bg-black/45 px-5 py-2 font-serif text-lg text-white shadow-sm backdrop-blur-md ring-1 ring-white/10">
+        <span className="inline-flex items-center rounded-full bg-white/90 dark:bg-black/45 px-5 py-1 font-serif text-lg text-[#1a1a1a] dark:text-white shadow-sm backdrop-blur-md ring-1 ring-black/10 dark:ring-white/10 transition-colors">
           {topic.title}
         </span>
       </div>

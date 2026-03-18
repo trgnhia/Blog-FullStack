@@ -6,11 +6,12 @@ export default function PostContent({ content }: { content: string }) {
       <article
         className="
           mt-10
-          prose prose-lg prose-invert
+          prose prose-lg dark:prose-invert
           max-w-none
-          text-white/80
+          text-[#1a1a1a] dark:text-white/80
           prose-img:mx-auto
           prose-img:block
+          transition-colors
         "
         dangerouslySetInnerHTML={{ __html: content ?? "" }}
       />

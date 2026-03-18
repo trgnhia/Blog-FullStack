@@ -3,10 +3,10 @@ import Image from "next/image";
 type Props = {
   category: string;
   numberOfBlogs: number;
-  src : string;
+  src: string;
 }
 
-export default function CategoryHeader({category, numberOfBlogs, src} : Props) {
+export default function CategoryHeader({ category, numberOfBlogs, src }: Props) {
   return (
     <section className="pt-6">
       <div className="flex flex-wrap items-center gap-4">
@@ -21,16 +21,16 @@ export default function CategoryHeader({category, numberOfBlogs, src} : Props) {
           />
         </div>
         <div>
-          <h1 className="text-4xl font-serif text-white mb-1 capitalize">
+          <h1 className="text-4xl font-serif text-[#1a1a1a] dark:text-white mb-1 capitalize transition-colors">
             {category}
           </h1>
-          <p className="text-white/60 text-lg">
+          <p className="text-black/60 dark:text-white/60 text-lg transition-colors">
             {numberOfBlogs} articles
           </p>
         </div>
       </div>
 
-      <p className="mt-4 max-w-2xl text-white/70 leading-relaxed">
+      <p className="mt-4 max-w-2xl text-black/70 dark:text-white/70 leading-relaxed transition-colors">
         Discover simple ways to live with purpose, balance, and creativity — from
         mindful habits to meaningful routines that make everyday life feel more
         inspiring and fulfilling.

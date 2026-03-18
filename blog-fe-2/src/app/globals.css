@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  --tc-neutral-900:#1e1e1e ;
-  --tc-neutral-600:#686262;
-  --tc-neutral-200:#ebe5e5;
-  --tc-system-white:#ffffff;
-  --tc-shadow-1: 0px 20px 60px 0px rgba(0,0,0,0.08);
-  --tc-linear-1: linear-gradient(90deg,#e64284,#ff623b);
+:root {
+  --tc-neutral-900: #1e1e1e;
+  --tc-neutral-600: #686262;
+  --tc-neutral-200: #ebe5e5;
+  --tc-system-white: #ffffff;
+  --tc-shadow-1: 0px 20px 60px 0px rgba(0, 0, 0, 0.08);
+  --tc-linear-1: linear-gradient(90deg, #e64284, #ff623b);
   background: var(--tc-neutral-900);
   color: var(--tc-neutral-200);
 }
@@ -16,25 +16,30 @@
 /* tiny helpers giống vibe Elora */
 @layer components {
   .pill {
-    @apply inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold;
+    @apply inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold text-[#1a1a1a] dark:text-white;
   }
+
   .pill-dark {
-    @apply pill bg-black/60 text-white shadow;
+    @apply pill bg-white text-[#1a1a1a] shadow dark:bg-black/60 dark:text-white;
   }
+
   .card {
-    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md;
+    @apply rounded-2xl border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/5 backdrop-blur-md;
   }
+
   .hover-up {
     @apply transition-transform duration-200 hover:-translate-y-1;
   }
 }
-.container-page{
+
+.container-page {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  max-width: 1320px; /* tuỳ chọn */
+  max-width: 1320px;
+  /* tuỳ chọn */
 }
 
 
@@ -48,7 +53,7 @@
   transform: translateX(-50%) !important;
 
   width: auto !important;
-  bottom: 12px !important;        
+  bottom: 12px !important;
   padding: 6px 10px;
   border-radius: 999px;
 

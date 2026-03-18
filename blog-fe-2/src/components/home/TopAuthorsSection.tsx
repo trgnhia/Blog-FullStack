@@ -41,15 +41,15 @@ function SocialIcon({ type }: { type: Social }) {
     type === "facebook"
       ? "f"
       : type === "x"
-      ? "X"
-      : type === "linkedin"
-      ? "in"
-      : "Bē";
+        ? "X"
+        : type === "linkedin"
+          ? "in"
+          : "Bē";
 
   return (
     <div
       aria-label={type}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-sm font-semibold text-white/80 ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-white/10"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black/5 dark:bg-white/5 text-sm font-semibold text-black/80 dark:text-white/80 ring-1 ring-black/10 dark:ring-white/10 transition hover:-translate-y-0.5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
     >
       {label}
     </div>
@@ -62,7 +62,7 @@ function AuthorCard({ author }: { author: Author }) {
       {/* Avatar */}
       <a
         href="#"
-        className="group mx-auto inline-block overflow-hidden rounded-full ring-2 ring-white/10 transition hover:-translate-y-0.5 hover:ring-white/20"
+        className="group mx-auto inline-block overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-white/10 transition hover:-translate-y-0.5 hover:ring-black/20 dark:hover:ring-white/20 transition-all"
       >
         <div className="relative h-[100px] w-[100px]">
           <Image
@@ -77,7 +77,7 @@ function AuthorCard({ author }: { author: Author }) {
       </a>
 
       {/* Name */}
-      <h4 className="mt-5 font-serif antialiased text-2xl leading-tight text-white">
+      <h4 className="mt-5 font-serif antialiased text-2xl leading-tight text-[#1a1a1a] dark:text-white transition-colors">
         <a href="#" className="hover:opacity-90">
           {author.name}
         </a>
@@ -89,7 +89,7 @@ function AuthorCard({ author }: { author: Author }) {
       </p>
 
       {/* Bio */}
-      <p className="mx-auto mt-2 max-w-md text-base leading-7 text-white/60">
+      <p className="mx-auto mt-2 max-w-md text-base leading-7 text-black/60 dark:text-white/60 transition-colors">
         {author.bio}
       </p>
 
@@ -107,8 +107,8 @@ export default function TopAuthorsSection() {
   return (
     <section className="py-16 pt-4">
       <div className="text-center">
-        <h5 className="font-serif antialiased text-4xl text-white">Top authors</h5>
-        <p className="mt-3 text-base text-white/60">
+        <h5 className="font-serif antialiased text-4xl text-[#1a1a1a] dark:text-white transition-colors">Top authors</h5>
+        <p className="mt-3 text-base text-black/60 dark:text-white/60 transition-colors">
           Top authors bring value to Elora magazine
         </p>
       </div>

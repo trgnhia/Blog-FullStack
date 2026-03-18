@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from 'next/link';
+import { useTheme } from "@/components/ThemeProvider";
+import { FiSun, FiMoon } from "react-icons/fi";
 const NAV = [
   { label: "Home", type: "link" as const },
   { label: "Shop", type: "link" as const },
@@ -12,6 +14,7 @@ const NAV = [
 ];
 
 export default function Navbar() {
+  const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,10 +31,10 @@ export default function Navbar() {
     <div ref={wrapRef} className="flex items-center justify-between py-4">
       {/* Brand */}
       <div className="flex flex-col leading-tight">
-        <Link className="text-2xl font-semibold tracking-wide" href="/">
-          MyBlog<span className="text-white/40">.</span>
+        <Link className="text-2xl font-semibold tracking-wide text-[#1a1a1a] dark:text-white" href="/">
+          MyBlog<span className="text-black/40 dark:text-white/40">.</span>
         </Link>
-        <span className="text-xs text-white/60">Stories that inspire every day.</span>
+        <span className="text-xs text-black/60 dark:text-white/60">Stories that inspire every day.</span>
       </div>
 
       {/* Desktop Nav */}
@@ -40,7 +43,7 @@ export default function Navbar() {
           <a
             key={item.label}
             href="/"
-            className="relative text-sm text-white/80 hover:text-white transition"
+            className="relative text-sm text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white transition"
           >
             {item.badge && (
               <span
@@ -57,11 +60,18 @@ export default function Navbar() {
 
       {/* Right side actions */}
       <div className="flex items-center gap-3">
-        <button className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/80 hover:bg-white/10">
+        <button
+          onClick={toggleTheme}
+          className="rounded-full border border-black/10 bg-black/5 p-2 text-black/80 hover:bg-black/10 dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10 transition-colors"
+          aria-label="Toggle Theme"
+        >
+          {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
+        </button>
+        <button className="rounded-full border border-black/10 bg-black/5 px-3 py-2 text-xs text-black/80 hover:bg-black/10 dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10 transition-colors">
           Search
         </button>
         <button
-          className="lg:hidden rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/80 hover:bg-white/10"
+          className="lg:hidden rounded-full border border-black/10 bg-black/5 px-3 py-2 text-xs text-black/80 hover:bg-black/10 dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10 transition-colors"
           onClick={() => setOpen((v) => !v)}
         >
           Menu
@@ -77,7 +87,7 @@ export default function Navbar() {
                 <a
                   key={item.label}
                   href="#"
-                  className="rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white transition"
+                  className="rounded-xl px-3 py-2 text-sm text-black/80 hover:bg-black/10 hover:text-black dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white transition"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

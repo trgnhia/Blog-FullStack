@@ -51,7 +51,7 @@ export default function CategoryPostsGrid({ columns = 2, blogs }: Props) {
               </span>
             </button>
           ) : (
-            <p className="inline-block rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm text-white/60 tracking-wide backdrop-blur-sm">
+            <p className="inline-block rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-7 py-3 text-sm text-black/60 dark:text-white/60 tracking-wide backdrop-blur-sm transition-colors">
               No more posts to load
             </p>
           )}

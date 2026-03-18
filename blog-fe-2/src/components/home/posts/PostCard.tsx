@@ -20,11 +20,11 @@ export default function PostCard({
   imageSrc,
 }: PostCardProps) {
   return (
-    <article className="relative">
+    <article className="relative group">
       {/* Image */}
       <Link
         href={`/blogs/${slug}`}
-        className="group block overflow-hidden rounded-[28px] bg-white/5"
+        className="block overflow-hidden rounded-[28px] bg-gray-100 dark:bg-white/5 transition-colors"
       >
         <div className="relative aspect-[684/524] w-full">
           <Image
@@ -49,19 +49,19 @@ export default function PostCard({
 
       {/* Content */}
       <div className="mt-5">
-        <h4 className="font-serif text-[25px] leading-tight text-white">
-          <Link href={`/blogs/${slug}`} className="hover:underline">
+        <h4 className="font-serif text-[25px] leading-tight text-[#1a1a1a] dark:text-white transition-colors group-hover:text-[#ea4c92]">
+          <Link href={`/blogs/${slug}`}>
             {title}
           </Link>
         </h4>
 
-        <p className="mt-3 text-[15px] leading-relaxed text-white/80">
+        <p className="mt-3 text-[15px] leading-relaxed text-black/80 dark:text-white/80 transition-colors">
           {excerpt}
         </p>
 
-        <div className="mt-6 flex items-center gap-4 text-[12px] font-medium text-white/60">
+        <div className="mt-6 flex items-center gap-4 text-[12px] font-medium text-black/60 dark:text-white/60 transition-colors">
           <span>{author}</span>
-          <span className="h-[1px] w-6 bg-white/30" />
+          <span className="h-[1px] w-6 bg-black/20 dark:bg-white/30" />
           <span>{timeAgo}</span>
         </div>
       </div>

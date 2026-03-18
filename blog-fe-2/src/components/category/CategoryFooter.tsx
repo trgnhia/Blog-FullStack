@@ -11,7 +11,7 @@ function SocialBtn({ children }: { children: React.ReactNode }) {
   return (
     <a
       href="#"
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-white/80 transition hover:-translate-y-0.5 hover:bg-white/10"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black/5 dark:bg-white/5 text-black/80 dark:text-white/80 transition-colors hover:-translate-y-0.5 hover:bg-black/10 dark:hover:bg-white/10"
     >
       {children}
     </a>
@@ -23,7 +23,7 @@ export default function CategoryFooter() {
     <footer className="mt-16 overflow-hidden">
       {/* full-width divider (tràn 2 bên) */}
       <div className="relative left-1/2 -ml-[50vw] w-screen">
-        <div className="h-px bg-white/10" />
+        <div className="h-px bg-black/10 dark:bg-white/10 transition-colors" />
       </div>
 
       <div className="pb-16 pt-14">
@@ -33,17 +33,17 @@ export default function CategoryFooter() {
             <div className="col-span-12 lg:col-span-4 lg:pr-10">
               <Link
                 href="/"
-                className="text-4xl font-extrabold tracking-tight text-[#d65778]"
+                className="text-4xl font-extrabold tracking-tight text-pink-600 dark:text-[#d65778] transition-colors"
               >
                 MyBlog
               </Link>
 
-              <p className="mt-4 max-w-md text-sm leading-6 text-white/70">
+              <p className="mt-4 max-w-md text-sm leading-6 text-black/70 dark:text-white/70 transition-colors">
                 Get the latest, most important news—fast. Real-time updates and
                 verified facts, without the noise.
               </p>
 
-              <div className="mt-6 inline-flex gap-3 rounded-2xl bg-white/[0.03] p-2">
+              <div className="mt-6 inline-flex gap-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] transition-colors p-2">
                 <SocialBtn>f</SocialBtn>
                 <SocialBtn>X</SocialBtn>
                 <SocialBtn>in</SocialBtn>
@@ -56,13 +56,13 @@ export default function CategoryFooter() {
               <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
                 {/* Categories */}
                 <div>
-                  <h6 className="mb-4 font-serif text-lg text-white">
+                  <h6 className="mb-4 font-serif text-lg text-[#1a1a1a] dark:text-white transition-colors">
                     Categories
                   </h6>
-                  <ul className="space-y-4 text-white/55">
+                  <ul className="space-y-4 text-black/55 dark:text-white/55 transition-colors">
                     {FOOTER_LINKS.categories.map((t) => (
                       <li key={t}>
-                        <a href={`/${t}`}  className="transition hover:text-white capitalize">
+                        <a href={`/${t}`} className="transition-colors hover:text-[#1a1a1a] dark:hover:text-white capitalize">
                           {t}
                         </a>
                       </li>
@@ -72,11 +72,11 @@ export default function CategoryFooter() {
 
                 {/* Company */}
                 <div>
-                  <h6 className="mb-4 font-serif text-lg text-white">Company</h6>
-                  <ul className="space-y-4 text-white/55">
+                  <h6 className="mb-4 font-serif text-lg text-[#1a1a1a] dark:text-white transition-colors">Company</h6>
+                  <ul className="space-y-4 text-black/55 dark:text-white/55 transition-colors">
                     {FOOTER_LINKS.company.map((t) => (
                       <li key={t}>
-                        <div  className="transition hover:text-white">
+                        <div className="transition-colors hover:text-[#1a1a1a] dark:hover:text-white cursor-pointer">
                           {t}
                         </div>
                       </li>
@@ -86,11 +86,11 @@ export default function CategoryFooter() {
 
                 {/* Policy (ẩn trên mobile giống Elora: d-none d-md-block) */}
                 <div className="hidden md:block">
-                  <h6 className="mb-4 font-serif text-lg text-white">Policy</h6>
-                  <ul className="space-y-4 text-white/55">
+                  <h6 className="mb-4 font-serif text-lg text-[#1a1a1a] dark:text-white transition-colors">Policy</h6>
+                  <ul className="space-y-4 text-black/55 dark:text-white/55 transition-colors">
                     {FOOTER_LINKS.policy.map((t) => (
                       <li key={t}>
-                        <div className="transition hover:text-white">
+                        <div className="transition-colors hover:text-[#1a1a1a] dark:hover:text-white cursor-pointer">
                           {t}
                         </div>
                       </li>
@@ -102,8 +102,8 @@ export default function CategoryFooter() {
 
             {/* BOTTOM */}
             <div className="col-span-12 pt-10">
-              <p className="text-center text-sm text-white/50 lg:text-left">
-                © 2025 <span className="text-white">TranNghia</span>. All Rights
+              <p className="text-center text-sm text-black/50 dark:text-white/50 lg:text-left transition-colors">
+                © 2025 <span className="text-[#1a1a1a] dark:text-white">TranNghia</span>. All Rights
                 Reserved.
               </p>
             </div>

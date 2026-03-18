@@ -18,10 +18,10 @@ export default function PostCardSlider({ blogs }: { blogs: BlogViewModel[] }) {
     <div className="mt-20">
       <div className="mb-6 flex items-end justify-between gap-4">
         <div>
-          <h3 className="text-xl md:text-2xl font-semibold text-white">
+          <h3 className="text-xl md:text-2xl font-semibold text-[#1a1a1a] dark:text-white transition-colors">
             Related posts
           </h3>
-          <p className="mt-2 text-sm text-white/60">
+          <p className="mt-2 text-sm text-black/60 dark:text-white/60 transition-colors">
             More stories you may enjoy.
           </p>
         </div>
@@ -35,11 +35,11 @@ export default function PostCardSlider({ blogs }: { blogs: BlogViewModel[] }) {
             z-10
             h-11 w-11 items-center justify-center
             rounded-full
-            bg-black/40 backdrop-blur
-            border border-white/15
-            text-white
-            hover:bg-black/60
-            transition
+            bg-white/60 dark:bg-black/40 backdrop-blur
+            border border-black/15 dark:border-white/15
+            text-[#1a1a1a] dark:text-white
+            hover:bg-white/80 dark:hover:bg-black/60
+            transition-all
             swiper-button-prev custom-nav
           "
         >
@@ -55,11 +55,11 @@ export default function PostCardSlider({ blogs }: { blogs: BlogViewModel[] }) {
             z-10
             h-11 w-11 items-center justify-center
             rounded-full
-            bg-black/40 backdrop-blur
-            border border-white/15
-            text-white
-            hover:bg-black/60
-            transition
+            bg-white/60 dark:bg-black/40 backdrop-blur
+            border border-black/15 dark:border-white/15
+            text-[#1a1a1a] dark:text-white
+            hover:bg-white/80 dark:hover:bg-black/60
+            transition-all
             swiper-button-next custom-nav
           "
         >

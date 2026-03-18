@@ -21,7 +21,7 @@ export default function PostsGridSection({
       <div className="mx-auto w-full max-w-6xl px-6">
         {/* Title */}
         <div className="mb-12 text-center">
-          <h3 className="font-serif text-[56px] leading-none tracking-tight text-white">
+          <h3 className="font-serif text-[56px] leading-none tracking-tight text-[#1a1a1a] dark:text-white transition-colors">
             The Fastest Way to Stay Updated
           </h3>
         </div>
@@ -54,7 +54,7 @@ export default function PostsGridSection({
               </span>
             </button>
           ) : (
-            <p className="inline-block rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm text-white/60 tracking-wide backdrop-blur-sm">
+            <p className="inline-block rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-7 py-3 text-sm text-black/60 dark:text-white/60 tracking-wide backdrop-blur-sm transition-colors">
               No more posts to load
             </p>
           )}

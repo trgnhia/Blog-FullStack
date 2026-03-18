@@ -13,7 +13,7 @@ type Props = {
 
 export default function CategorySideImages({ images }: Props) {
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-white/5">
+    <div className="relative overflow-hidden rounded-3xl bg-black/5 dark:bg-white/5 transition-colors">
       <div className="relative aspect-[4/5] w-full">
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
@@ -21,11 +21,11 @@ export default function CategorySideImages({ images }: Props) {
           fadeEffect={{ crossFade: true }}
           loop
           autoplay={{ delay: 2500, disableOnInteraction: false }}
-          speed={500} 
+          speed={500}
           pagination={{ clickable: true }}
           className="w-full"
         >
-          {images.map((img,i) => (
+          {images.map((img, i) => (
             <SwiperSlide key={`${img.src}-${i}`}>
               <img
                 src={img.src}
