@@ -21,26 +21,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                //addFilterBefore = thứ tự filter
                 .cors(cors -> {})
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // Tắt default login form/basic
                 .httpBasic(basic -> basic.disable())
                 .formLogin(form -> form.disable())
-                //authorizeHttpRequests chỉ định luật để AuthorizationFilter dùng
                 .authorizeHttpRequests(auth -> auth
-                        // ===== AUTH endpoints: permit =====
                         .requestMatchers("/auth/**").permitAll()
                         //  public images/static
                         .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
-                        // ===== Public blog read-only endpoints =====
                         .requestMatchers(HttpMethod.GET, "/api/blogs/published/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/blogs/by-slug/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/blogs/category/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/uploads/**").permitAll()
-                        // ===== Còn lại: yêu cầu auth =====
                         .anyRequest().authenticated()
                 );
 

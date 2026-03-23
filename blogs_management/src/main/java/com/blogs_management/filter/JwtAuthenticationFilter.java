@@ -24,17 +24,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        // Skip auth endpoints hoàn toàn (login/refresh/logout)
         String path = request.getServletPath();
         return path != null && path.startsWith("/auth/");
     }
 
-    //chạy trước Controller (nằm trong “dây chuyền filter”).
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // Nếu đã có authentication rồi thì không parse lại
         if (SecurityContextHolder.getContext().getAuthentication() != null) {
-            filterChain.doFilter(request, response); //chuyền request/response cho filter tiếp theo / hoặc vào controller.
+            filterChain.doFilter(request, response);
             return;
         }
 

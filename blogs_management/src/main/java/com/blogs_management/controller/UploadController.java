@@ -1,5 +1,6 @@
 package com.blogs_management.controller;
 
+import com.blogs_management.dto.ApiResponse;
 import com.blogs_management.dto.images.ImagePageResponseDTO;
 import com.blogs_management.dto.images.ImageResponseDTO;
 import com.blogs_management.service.upload.ImageService;
@@ -15,23 +16,50 @@ import java.util.List;
 @RequestMapping("/api/uploads")
 @RequiredArgsConstructor
 public class UploadController {
+
     private final ImageService imageService;
+
     @PostMapping("/blog-cover")
-    public ResponseEntity<ImageResponseDTO> uploadBlogImage(@RequestParam("file") MultipartFile file) {
-        ImageResponseDTO imageResponseDTO = new ImageResponseDTO();
-        imageResponseDTO  = imageService.fileUpload(file);
-        return ResponseEntity.ok(imageResponseDTO);
+    public ResponseEntity<ApiResponse<ImageResponseDTO>> uploadBlogImage(
+            @RequestParam("file") MultipartFile file
+    ) {
+        ImageResponseDTO imageResponseDTO = imageService.fileUpload(file);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        imageResponseDTO,
+                        "Upload image successfully"
+                )
+        );
     }
 
-    @GetMapping()
-    public ResponseEntity<List<ImageResponseDTO>> getAllImagesFile() {
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<ImageResponseDTO>>> getAllImagesFile() {
         List<ImageResponseDTO> listDto = imageService.getAllImageFiles();
-        return ResponseEntity.status(HttpStatus.OK).body(listDto);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        listDto,
+                        "Get all images successfully"
+                )
+        );
     }
+
     @GetMapping("/pageable")
-    public ResponseEntity<ImagePageResponseDTO> getImageFiles(@RequestParam(defaultValue="0") int page,
-                                                              @RequestParam(defaultValue="0") int size ) {
-       ImagePageResponseDTO imagePageResponseDTO = imageService.getImageFiles(page, size);
-       return ResponseEntity.status(HttpStatus.OK).body(imagePageResponseDTO);
+    public ResponseEntity<ApiResponse<ImagePageResponseDTO>> getImageFiles(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "0") int size
+    ) {
+        ImagePageResponseDTO imagePageResponseDTO = imageService.getImageFiles(page, size);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        imagePageResponseDTO,
+                        "Get images pageable successfully"
+                )
+        );
     }
 }
