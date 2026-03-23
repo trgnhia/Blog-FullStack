@@ -4,6 +4,7 @@ import com.blogs_management.dto.ApiResponse;
 import com.blogs_management.dto.blogs.BlogRequestDTO;
 import com.blogs_management.dto.blogs.BlogResponseDTO;
 import com.blogs_management.service.blog.BlogService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +58,7 @@ public class BlogController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<BlogResponseDTO>> create(@RequestBody BlogRequestDTO dto) {
+    public ResponseEntity<ApiResponse<BlogResponseDTO>> create(@Valid @RequestBody BlogRequestDTO dto) {
         BlogResponseDTO response = blogService.createBlog(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
