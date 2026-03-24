@@ -3,6 +3,7 @@ package com.blogs_management.controller;
 import com.blogs_management.dto.ApiResponse;
 import com.blogs_management.dto.blogs.BlogRequestDTO;
 import com.blogs_management.dto.blogs.BlogResponseDTO;
+import com.blogs_management.service.MessageService;
 import com.blogs_management.service.blog.BlogService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class BlogController {
 
     private final BlogService blogService;
+    private final MessageService messageService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<BlogResponseDTO>>> getAllBlogs() {
@@ -26,7 +28,7 @@ public class BlogController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         blogs,
-                        "Get all blogs successfully"
+                        messageService.get("blog.get_all.success")
                 )
         );
     }
@@ -40,7 +42,7 @@ public class BlogController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         blogs,
-                        "Get published blogs successfully"
+                        messageService.get("blog.get_published.success")
                 )
         );
     }
@@ -52,7 +54,7 @@ public class BlogController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         response,
-                        "Get blog by slug successfully"
+                        messageService.get("blog.get_by_slug.success")
                 )
         );
     }
@@ -64,7 +66,7 @@ public class BlogController {
                 ApiResponse.success(
                         HttpStatus.CREATED.value(),
                         response,
-                        "Create blog successfully"
+                        messageService.get("blog.create.success")
                 )
         );
     }
@@ -72,14 +74,14 @@ public class BlogController {
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<BlogResponseDTO>> update(
             @PathVariable Long id,
-            @RequestBody BlogRequestDTO dto
+            @Valid @RequestBody BlogRequestDTO dto
     ) {
         BlogResponseDTO response = blogService.updateBlog(dto, id);
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         response,
-                        "Update blog successfully"
+                        messageService.get("blog.update.success")
                 )
         );
     }
@@ -91,7 +93,7 @@ public class BlogController {
                 ApiResponse.success(
                         HttpStatus.NO_CONTENT.value(),
                         null,
-                        "Delete blog successfully"
+                        messageService.get("blog.delete.success")
                 )
         );
     }
@@ -105,8 +107,9 @@ public class BlogController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         response,
-                        "Get blogs by category successfully"
+                        messageService.get("blog.get_by_category.success")
                 )
         );
     }
+
 }

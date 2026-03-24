@@ -3,6 +3,7 @@ package com.blogs_management.controller;
 import com.blogs_management.dto.ApiResponse;
 import com.blogs_management.dto.login.LoginRequest;
 import com.blogs_management.dto.login.LoginResponse;
+import com.blogs_management.service.MessageService;
 import com.blogs_management.service.auth.AuthService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+    private final MessageService messageService;
 
     @PostMapping("/auth/login")
     public ResponseEntity<ApiResponse<LoginResponse>> login(
@@ -35,7 +37,7 @@ public class AuthController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         res,
-                        "Login successful"
+                        messageService.get("auth.login.success")
                 )
         );
     }
@@ -51,7 +53,7 @@ public class AuthController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         res,
-                        "Refresh token successful"
+                        messageService.get("auth.refresh.success")
                 )
         );
     }
@@ -67,7 +69,7 @@ public class AuthController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         null,
-                        "Logout successful"
+                        messageService.get("auth.logout.success")
                 )
         );
     }

@@ -3,6 +3,7 @@ package com.blogs_management.controller;
 import com.blogs_management.dto.ApiResponse;
 import com.blogs_management.dto.images.ImagePageResponseDTO;
 import com.blogs_management.dto.images.ImageResponseDTO;
+import com.blogs_management.service.MessageService;
 import com.blogs_management.service.upload.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.List;
 public class UploadController {
 
     private final ImageService imageService;
+    private final MessageService messageService;
 
     @PostMapping("/blog-cover")
     public ResponseEntity<ApiResponse<ImageResponseDTO>> uploadBlogImage(
@@ -29,7 +31,7 @@ public class UploadController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         imageResponseDTO,
-                        "Upload image successfully"
+                        messageService.get("upload.blog_cover.success")
                 )
         );
     }
@@ -42,7 +44,7 @@ public class UploadController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         listDto,
-                        "Get all images successfully"
+                        messageService.get("upload.get_all.success")
                 )
         );
     }
@@ -58,8 +60,9 @@ public class UploadController {
                 ApiResponse.success(
                         HttpStatus.OK.value(),
                         imagePageResponseDTO,
-                        "Get images pageable successfully"
+                        messageService.get("upload.get_pageable.success")
                 )
         );
     }
+
 }
