@@ -35,4 +35,17 @@ public class GlobalExceptionHandler {
                 )
         );
     }
+
+    @ExceptionHandler(value = UnauthorizedException.class)
+    public ResponseEntity<ApiResponse<Void>> handleUnauthorized(UnauthorizedException e) {
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+
+        return ResponseEntity.status(status).body(
+                ApiResponse.failure(
+                        status.value(),
+                        null,
+                        e.getMessage()
+                )
+        );
+    }
 }

@@ -77,44 +77,6 @@ public class ImageServiceImpl implements ImageService {
                 .collect(Collectors.toList());
     }
 
-    /*
-     * ====================== IMAGE PAGINATION LOGIC ======================
-     *
-     * Mục tiêu:
-     * - Tránh load toàn bộ ảnh (gây lag FE khi mở modal)
-     * - Chỉ lấy N ảnh mỗi lần (mặc định 10 ảnh)
-     * - Phục vụ infinite scroll phía frontend
-     *
-     * Ý tưởng:
-     * - Frontend gửi page & size (ví dụ: page=0, size=10)
-     * - Backend dùng Spring Data JPA Pageable để query theo LIMIT / OFFSET
-     *
-     * Các bước xử lý:
-     * 1. Guard input:
-     *    - page < 0  -> ép về 0 (Spring page index là 0-based)
-     *    - size <= 0 -> dùng mặc định 10
-     *    - size quá lớn -> giới hạn tối đa (tránh overload DB)
-     *
-     * 2. Tạo Pageable:
-     *    - PageRequest.of(page, size)
-     *    - page = số trang (0 = trang đầu)
-     *    - size = số ảnh mỗi trang
-     *
-     * 3. Query DB:
-     *    - imageRepository.findAll(pageable)
-     *    - Spring tự sinh query dạng LIMIT / OFFSET
-     *
-     * 4. Lấy dữ liệu cần dùng:
-     *    - pageResult.getContent() -> List<Image> của trang hiện tại
-     *
-     * 5. Map Entity -> DTO:
-     *    - Trả về List<ImageResponseDTO cho frontend
-     *
-     * Ghi chú:
-     * - Có thể thêm Sort (id/createdAt desc) để paging ổn định hơn
-     * - Có thể mở rộng trả thêm hasNext/page metadata cho infinite scroll chuẩn
-     * ===================================================================
-     */
 
     @Override
     public ImagePageResponseDTO getImageFiles(int page, int size) {

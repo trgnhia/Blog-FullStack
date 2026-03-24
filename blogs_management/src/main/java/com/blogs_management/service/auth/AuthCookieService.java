@@ -14,7 +14,6 @@ public class AuthCookieService {
     @Value("${app.auth.refresh-cookie.path:/}")
     private String refreshCookiePath;
 
-    // Prod: true (https). dev local có thể false.
     @Value("${app.auth.refresh-cookie.secure:true}")
     private boolean refreshCookieSecure;
 
@@ -31,7 +30,7 @@ public class AuthCookieService {
                 .secure(refreshCookieSecure)
                 .path(refreshCookiePath)                 // gửi cho mọi endpoint
                 .sameSite(refreshCookieSameSite)         // local dev an toàn
-                .maxAge(ttl)                             // 14 ngày
+                .maxAge(ttl)
                 .build();
     }
     public ResponseCookie clearRefreshCookie() {
