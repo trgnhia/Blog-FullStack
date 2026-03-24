@@ -14,10 +14,6 @@ public class AdminRefreshToken {
     @Id
     @Column(columnDefinition="uuid", updatable=false, nullable=false)
     private UUID id;
-    /**
-     * Token thuộc về admin nào.
-     * Many tokens (nhiều phiên đăng nhập) có thể thuộc 1 admin.
-     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="admin_id", nullable=false)
     private Admin admin;

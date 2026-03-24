@@ -8,17 +8,22 @@ import com.blogs_management.model.Blog;
 import com.blogs_management.repository.BlogRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
 @RequiredArgsConstructor
 public class BlogServiceImpl implements BlogService {
-    public final BlogRepository blogRepository;
-    public final BlogMapper blogMapper;
+
+    private final BlogRepository blogRepository;
+    private final BlogMapper blogMapper;
+    private final MessageSource messageSource;
 
     @Override
     @Transactional
@@ -32,12 +37,13 @@ public class BlogServiceImpl implements BlogService {
     @Override
     @Transactional
     public List<BlogResponseDTO> getPublishedBlog(Boolean published) {
-       List<Blog> blogs;
-       if (published == null) {
-           blogs = blogRepository.findAll();
-       } else {
-           blogs = blogRepository.findByPublish(published);
-       }
+        List<Blog> blogs;
+        if (published == null) {
+            blogs = blogRepository.findAll();
+        } else {
+            blogs = blogRepository.findByPublish(published);
+        }
+
         return blogs.stream()
                 .map(blogMapper::toBlogResponseDTO)
                 .collect(Collectors.toList());
@@ -57,11 +63,16 @@ public class BlogServiceImpl implements BlogService {
     public BlogResponseDTO getBlogWithSlug(String slug) {
         Blog blog = blogRepository.findBySlug(slug);
         if (blog == null) {
-            throw new ResourceNotFoundException("Blog not found with slug: " + slug);
+            throw new ResourceNotFoundException(
+                    messageSource.getMessage(
+                            "blog.not_found.slug",
+                            new Object[]{slug},
+                            LocaleContextHolder.getLocale()
+                    )
+            );
         }
         return blogMapper.toBlogResponseDTO(blog);
     }
-
 
     @Override
     @Transactional
@@ -70,14 +81,23 @@ public class BlogServiceImpl implements BlogService {
         blogRepository.save(blog);
         return blogMapper.toBlogResponseDTO(blog);
     }
+
     @Override
     @Transactional
     public BlogResponseDTO updateBlog(BlogRequestDTO dto, Long id) {
         Optional<Blog> blog = blogRepository.findById(id);
-        if (blog.isEmpty()) throw new ResourceNotFoundException("Blog not found with id: " + id);
+        if (blog.isEmpty()) {
+            throw new ResourceNotFoundException(
+                    messageSource.getMessage(
+                            "blog.not_found.id",
+                            new Object[]{id},
+                            LocaleContextHolder.getLocale()
+                    )
+            );
+        }
+
         blogMapper.updateBlog(dto, blog.get());
         Blog updatedBlog = blogRepository.save(blog.get());
-
         return blogMapper.toBlogResponseDTO(updatedBlog);
     }
 
@@ -85,7 +105,15 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     public void deleteBlog(Long id) {
         Optional<Blog> blog = blogRepository.findById(id);
-        if (blog.isEmpty()) throw new ResourceNotFoundException("Blog not found with id: " + id);
+        if (blog.isEmpty()) {
+            throw new ResourceNotFoundException(
+                    messageSource.getMessage(
+                            "blog.not_found.id",
+                            new Object[]{id},
+                            LocaleContextHolder.getLocale()
+                    )
+            );
+        }
         blogRepository.delete(blog.get());
     }
 }
