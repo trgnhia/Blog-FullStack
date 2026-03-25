@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/uploads")
 @RequiredArgsConstructor
-public class UploadController {
+public class ImageFileController {
 
     private final ImageService imageService;
     private final MessageService messageService;
