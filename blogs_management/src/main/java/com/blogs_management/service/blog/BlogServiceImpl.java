@@ -1,5 +1,6 @@
 package com.blogs_management.service.blog;
 
+import com.blogs_management.constant.AppConstants;
 import com.blogs_management.dto.blogs.BlogRequestDTO;
 import com.blogs_management.dto.blogs.BlogResponseDTO;
 import com.blogs_management.exception.ResourceNotFoundException;
@@ -65,7 +66,7 @@ public class BlogServiceImpl implements BlogService {
         if (blog == null) {
             throw new ResourceNotFoundException(
                     messageSource.getMessage(
-                            "blog.not_found.slug",
+                            AppConstants.MESSAGE_KEY_BLOG_NOT_FOUND_SLUG,
                             new Object[]{slug},
                             LocaleContextHolder.getLocale()
                     )
@@ -89,7 +90,7 @@ public class BlogServiceImpl implements BlogService {
         if (blog.isEmpty()) {
             throw new ResourceNotFoundException(
                     messageSource.getMessage(
-                            "blog.not_found.id",
+                            AppConstants.MESSAGE_KEY_BLOG_NOT_FOUND_ID,
                             new Object[]{id},
                             LocaleContextHolder.getLocale()
                     )
@@ -108,7 +109,7 @@ public class BlogServiceImpl implements BlogService {
         if (blog.isEmpty()) {
             throw new ResourceNotFoundException(
                     messageSource.getMessage(
-                            "blog.not_found.id",
+                            AppConstants.MESSAGE_KEY_BLOG_NOT_FOUND_ID,
                             new Object[]{id},
                             LocaleContextHolder.getLocale()
                     )

@@ -1,5 +1,6 @@
 package com.blogs_management.service.auth;
 
+import com.blogs_management.constant.AppConstants;
 import com.blogs_management.dto.login.LoginResponse;
 import com.blogs_management.exception.UnauthorizedException;
 import com.blogs_management.model.Admin;
@@ -43,17 +44,17 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResponse login(String email, String rawPassword, HttpServletResponse response) {
         Admin admin = adminRepository.findByEmail(email)
-                .orElseThrow(() -> unauthorized(getMessage("auth.login.invalid_email")));
+                .orElseThrow(() -> unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_LOGIN_INVALID_EMAIL)));
 
-        if (admin.getStatus() != null && !"ACTIVE".equalsIgnoreCase(admin.getStatus())) {
-            throw unauthorized(getMessage("auth.login.account_disabled"));
+        if (admin.getStatus() != null && !AppConstants.STATUS_ACTIVE.equalsIgnoreCase(admin.getStatus())) {
+            throw unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_LOGIN_ACCOUNT_DISABLED));
         }
 
         boolean isCorrect = passwordEncoder.matches(rawPassword, admin.getPasswordHash());
         if (!isCorrect) {
             admin.setFailedLoginCount(admin.getFailedLoginCount() + 1);
             adminRepository.save(admin);
-            throw unauthorized(getMessage("auth.login.incorrect_password"));
+            throw unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_LOGIN_INCORRECT_PASSWORD));
         }
 
         admin.setFailedLoginCount(0);
@@ -79,15 +80,15 @@ public class AuthServiceImpl implements AuthService {
         OffsetDateTime now = OffsetDateTime.now();
 
         if (refreshTokenRaw == null || refreshTokenRaw.isBlank()) {
-            throw unauthorized(getMessage("auth.refresh.token_null"));
+            throw unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_REFRESH_TOKEN_NULL));
         }
 
         String refreshToken = sha256Hex(refreshTokenRaw);
         AdminRefreshToken rt = adminRefreshTokenRepo.findByTokenHash(refreshToken)
-                .orElseThrow(() -> unauthorized(getMessage("auth.refresh.invalid_token")));
+                .orElseThrow(() -> unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_REFRESH_INVALID_TOKEN)));
 
         if (rt.getRevokedAt() != null || rt.getExpiresAt().isBefore(now)) {
-            throw unauthorized(getMessage("auth.refresh.expired_token"));
+            throw unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_REFRESH_EXPIRED_TOKEN));
         }
 
         if (rt.getRotatedAt() != null) {
@@ -101,7 +102,7 @@ public class AuthServiceImpl implements AuthService {
             }
 
             adminRefreshTokenRepo.saveAll(activeTokens);
-            throw unauthorized(getMessage("auth.refresh.reuse_detected"));
+            throw unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_REFRESH_REUSE_DETECTED));
         }
 
         String newRefreshTokenRaw = generateRefreshTokenRaw();
@@ -127,12 +128,12 @@ public class AuthServiceImpl implements AuthService {
         OffsetDateTime now = OffsetDateTime.now();
 
         if (refreshTokenRaw == null || refreshTokenRaw.isBlank()) {
-            throw unauthorized(getMessage("auth.logout.token_null"));
+            throw unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_LOGOUT_TOKEN_NULL));
         }
 
         String refreshToken = sha256Hex(refreshTokenRaw);
         AdminRefreshToken rt = adminRefreshTokenRepo.findByTokenHash(refreshToken)
-                .orElseThrow(() -> unauthorized(getMessage("auth.logout.invalid_token")));
+                .orElseThrow(() -> unauthorized(getMessage(AppConstants.MESSAGE_KEY_AUTH_LOGOUT_INVALID_TOKEN)));
 
         rt.setRevokedAt(now);
         adminRefreshTokenRepo.save(rt);

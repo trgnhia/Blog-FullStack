@@ -1,5 +1,6 @@
 package com.blogs_management.service.upload;
 
+import com.blogs_management.constant.AppConstants;
 import com.blogs_management.dto.images.ImagePageResponseDTO;
 import com.blogs_management.dto.images.ImageResponseDTO;
 import com.blogs_management.mapper.ImageMapper;
@@ -47,7 +48,7 @@ public class ImageServiceImpl implements ImageService {
             String ext = getExtension(originalName);
             String fileName = UUID.randomUUID() + ext;
 
-            String storagePath = bucket + "/" + fileName;
+            String storagePath = bucket + AppConstants.PATH_SEPARATOR + fileName;
             uploadToSupabase(file, fileName);
 
             Image newImage = new Image();
@@ -58,19 +59,20 @@ public class ImageServiceImpl implements ImageService {
             return imageMapper.toImageResponseDTO(newImage);
 
         } catch (IOException e) {
-            throw new RuntimeException("Upload failed: " + e.getMessage(), e);
+            throw new RuntimeException(AppConstants.MESSAGE_UPLOAD_FAILED_PREFIX + e.getMessage(), e);
         }
     }
 
     private void uploadToSupabase(MultipartFile file, String fileName) throws IOException {
-        String uploadUrl = supabaseUrl + "/storage/v1/object/" + bucket + "/" + fileName;
+        String uploadUrl = supabaseUrl + AppConstants.SUPABASE_STORAGE_OBJECT_PATH + bucket
+                + AppConstants.PATH_SEPARATOR + fileName;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(supabaseServiceKey);
         headers.setContentType(MediaType.parseMediaType(
-                file.getContentType() != null ? file.getContentType() : "application/octet-stream"
+                file.getContentType() != null ? file.getContentType() : AppConstants.MEDIA_TYPE_APPLICATION_OCTET_STREAM
         ));
-        headers.set("x-upsert", "false");
+        headers.set(AppConstants.HEADER_X_UPSERT, AppConstants.HEADER_VALUE_FALSE);
 
         HttpEntity<byte[]> requestEntity = new HttpEntity<>(file.getBytes(), headers);
 
@@ -82,7 +84,7 @@ public class ImageServiceImpl implements ImageService {
         );
 
         if (!response.getStatusCode().is2xxSuccessful()) {
-            throw new RuntimeException("Supabase upload failed: " + response.getBody());
+            throw new RuntimeException(AppConstants.MESSAGE_SUPABASE_UPLOAD_FAILED_PREFIX + response.getBody());
         }
     }
 
