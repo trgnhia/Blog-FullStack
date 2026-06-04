@@ -1,21 +1,23 @@
 package com.blogs_management.service.upload;
+
+import com.blogs_management.constant.AppConstants;
 import com.blogs_management.dto.images.ImagePageResponseDTO;
 import com.blogs_management.dto.images.ImageResponseDTO;
 import com.blogs_management.mapper.ImageMapper;
-import com.blogs_management.model.Blog;
 import com.blogs_management.model.Image;
 import com.blogs_management.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.*;
-
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -23,48 +25,74 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ImageServiceImpl implements ImageService {
+
     private final ImageRepository imageRepository;
     private final ImageMapper imageMapper;
-    // ĐƯỜNG DẪN ABSOLUTE CHÍNH XÁC
-    private static final Path UPLOAD_DIR = Paths.get(
-            "D:/java/SpringPrj/blogs_management/uploads/blogImages"
-    ).toAbsolutePath().normalize();
+
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    @Value("${app.supabase.url}")
+    private String supabaseUrl;
+
+    @Value("${app.supabase.service-key}")
+    private String supabaseServiceKey;
+
+    @Value("${app.supabase.bucket}")
+    private String bucket;
 
     @Override
     @Transactional
     public ImageResponseDTO fileUpload(MultipartFile file) {
-        Image newImage = new Image();
         try {
-            // 1. Tạo thư mục nếu chưa tồn tại
-            if (Files.notExists(UPLOAD_DIR)) {
-                Files.createDirectories(UPLOAD_DIR);
-            }
-
-            // 2. Tách extension an toàn
             String originalName = file.getOriginalFilename();
-            String ext = "";
-            if (originalName != null && originalName.contains(".")) {
-                ext = originalName.substring(originalName.lastIndexOf("."));
-            }
-
-            // 3. Tạo tên file random
+            String ext = getExtension(originalName);
             String fileName = UUID.randomUUID() + ext;
 
-            // 4. Tạo path đích
-            Path destination = UPLOAD_DIR.resolve(fileName);
+            String storagePath = bucket + AppConstants.PATH_SEPARATOR + fileName;
+            uploadToSupabase(file, fileName);
 
-            // 5. Ghi file vào ổ đĩa
-            file.transferTo(destination.toFile());
-
-            // 6. Trả về URL FE sẽ dùng
-            String path = "/uploads/blogImages/" + fileName;
+            Image newImage = new Image();
             newImage.setFileName(originalName);
-            newImage.setPath(path);
+            newImage.setPath(storagePath);
+
             imageRepository.save(newImage);
             return imageMapper.toImageResponseDTO(newImage);
+
         } catch (IOException e) {
-            throw new RuntimeException("Upload failed: " + e.getMessage(), e);
+            throw new RuntimeException(AppConstants.MESSAGE_UPLOAD_FAILED_PREFIX + e.getMessage(), e);
         }
+    }
+
+    private void uploadToSupabase(MultipartFile file, String fileName) throws IOException {
+        String uploadUrl = supabaseUrl + AppConstants.SUPABASE_STORAGE_OBJECT_PATH + bucket
+                + AppConstants.PATH_SEPARATOR + fileName;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(supabaseServiceKey);
+        headers.setContentType(MediaType.parseMediaType(
+                file.getContentType() != null ? file.getContentType() : AppConstants.MEDIA_TYPE_APPLICATION_OCTET_STREAM
+        ));
+        headers.set(AppConstants.HEADER_X_UPSERT, AppConstants.HEADER_VALUE_FALSE);
+
+        HttpEntity<byte[]> requestEntity = new HttpEntity<>(file.getBytes(), headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                uploadUrl,
+                HttpMethod.POST,
+                requestEntity,
+                String.class
+        );
+
+        if (!response.getStatusCode().is2xxSuccessful()) {
+            throw new RuntimeException(AppConstants.MESSAGE_SUPABASE_UPLOAD_FAILED_PREFIX + response.getBody());
+        }
+    }
+
+    private String getExtension(String originalName) {
+        if (originalName == null || !originalName.contains(".")) {
+            return "";
+        }
+        return originalName.substring(originalName.lastIndexOf("."));
     }
 
     @Override
@@ -76,21 +104,22 @@ public class ImageServiceImpl implements ImageService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public ImagePageResponseDTO getImageFiles(int page, int size) {
         int safePage = Math.max(page, 0);
-        int safeSize = size <= 10 ? 10 : size;
+        int safeSize = Math.max(size, 10);
         int maxSize = 50;
         if (safeSize > maxSize) {
             safeSize = maxSize;
         }
+
         Pageable pageable = PageRequest.of(safePage, safeSize);
-        // Pageable pageable = PageRequest.of(safePage, safeSize, Sort.by("id").descending());
         Page<Image> pageResult = imageRepository.findAll(pageable);
+
         List<ImageResponseDTO> imageDtoList = pageResult.getContent().stream()
                 .map(imageMapper::toImageResponseDTO)
                 .collect(Collectors.toList());
+
         ImagePageResponseDTO imagePageResponseDTO = new ImagePageResponseDTO();
         imagePageResponseDTO.setItems(imageDtoList);
         imagePageResponseDTO.setHasNext(pageResult.hasNext());

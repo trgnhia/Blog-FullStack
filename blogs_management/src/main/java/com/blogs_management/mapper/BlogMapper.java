@@ -3,11 +3,14 @@ package com.blogs_management.mapper;
 import com.blogs_management.dto.blogs.BlogRequestDTO;
 import com.blogs_management.dto.blogs.BlogResponseDTO;
 import com.blogs_management.model.Blog;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BlogMapper {
-    private final String baseUrl = "http://localhost:8081";
+    @Value("${app.storage.base-url}")
+    private String storageBaseUrl;
+
     public Blog toEntity(BlogRequestDTO dto) {
         Blog blogEntity = new Blog();
         blogEntity.setTitle(dto.getTitle());
@@ -22,14 +25,18 @@ public class BlogMapper {
         blogEntity.setCoverImageId(dto.getCoverImageId());
         return blogEntity;
     }
+
     public BlogResponseDTO toBlogResponseDTO(Blog entity) {
         BlogResponseDTO dto = new BlogResponseDTO();
-        if (entity.getCoverImage().startsWith("/uploads/blogImages/")) {
-            dto.setCoverImageUrl(baseUrl + entity.getCoverImage());
-        } else {
-            dto.setCoverImageUrl(entity.getCoverImage());
-        }
+
         dto.setCoverImagePath(entity.getCoverImage());
+
+        if (entity.getCoverImage() != null && !entity.getCoverImage().isBlank()) {
+            dto.setCoverImageUrl(storageBaseUrl + "/" + entity.getCoverImage());
+        } else {
+            dto.setCoverImageUrl(null);
+        }
+
         dto.setId(entity.getId());
         dto.setCreatedAt(entity.getCreatedAt());
         dto.setTitle(entity.getTitle());
@@ -41,6 +48,7 @@ public class BlogMapper {
         dto.setContent(entity.getContent());
         dto.setPublish(entity.getPublish());
         dto.setCoverImageId(entity.getCoverImageId());
+
         return dto;
     }
     public Blog updateBlog(BlogRequestDTO dto, Blog entity) {
