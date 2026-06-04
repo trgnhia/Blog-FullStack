@@ -1,5 +1,4 @@
 package com.blogs_management.service.upload;
-import com.blogs_management.dto.blogs.BlogResponseDTO;
 import com.blogs_management.dto.images.ImagePageResponseDTO;
 import com.blogs_management.dto.images.ImageResponseDTO;
 import com.blogs_management.mapper.ImageMapper;
