@@ -3,8 +3,8 @@ package com.blogs_management.service.auth;
 import com.blogs_management.constant.AppConstants;
 import com.blogs_management.dto.login.LoginResponse;
 import com.blogs_management.exception.UnauthorizedException;
-import com.blogs_management.model.Admin;
-import com.blogs_management.model.AdminRefreshToken;
+import com.blogs_management.entity.Admin;
+import com.blogs_management.entity.AdminRefreshToken;
 import com.blogs_management.repository.AdminRefreshTokenRepository;
 import com.blogs_management.repository.AdminRepository;
 

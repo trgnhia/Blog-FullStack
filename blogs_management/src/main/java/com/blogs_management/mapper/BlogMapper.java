@@ -2,7 +2,7 @@ package com.blogs_management.mapper;
 
 import com.blogs_management.dto.blogs.BlogRequestDTO;
 import com.blogs_management.dto.blogs.BlogResponseDTO;
-import com.blogs_management.model.Blog;
+import com.blogs_management.entity.Blog;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

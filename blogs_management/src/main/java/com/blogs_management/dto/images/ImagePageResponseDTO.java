@@ -1,6 +1,5 @@
 package com.blogs_management.dto.images;
 
-import com.blogs_management.model.Image;
 import lombok.Data;
 
 import java.util.List;

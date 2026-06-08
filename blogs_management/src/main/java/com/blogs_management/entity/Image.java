@@ -1,4 +1,4 @@
-package com.blogs_management.model;
+package com.blogs_management.entity;
 
 
 import jakarta.persistence.*;

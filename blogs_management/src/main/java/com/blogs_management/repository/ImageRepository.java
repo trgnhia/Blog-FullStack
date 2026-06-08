@@ -1,6 +1,6 @@
 package com.blogs_management.repository;
 
-import com.blogs_management.model.Image;
+import com.blogs_management.entity.Image;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

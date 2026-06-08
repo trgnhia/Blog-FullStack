@@ -4,7 +4,7 @@ import com.blogs_management.constant.AppConstants;
 import com.blogs_management.dto.images.ImagePageResponseDTO;
 import com.blogs_management.dto.images.ImageResponseDTO;
 import com.blogs_management.mapper.ImageMapper;
-import com.blogs_management.model.Image;
+import com.blogs_management.entity.Image;
 import com.blogs_management.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

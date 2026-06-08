@@ -1,7 +1,7 @@
 package com.blogs_management.service.auth;
 
 import com.blogs_management.dto.auth.JwtPrincipal;
-import com.blogs_management.model.Admin;
+import com.blogs_management.entity.Admin;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;

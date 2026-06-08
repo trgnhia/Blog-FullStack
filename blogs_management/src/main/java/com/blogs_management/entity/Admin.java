@@ -1,4 +1,4 @@
-package com.blogs_management.model;
+package com.blogs_management.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +9,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 
-import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.blogs_management.model;
+package com.blogs_management.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -42,8 +42,6 @@ public class AdminRefreshToken {
      KHÔNG tạo column
      KHÔNG đọc/ghi xuống DB
      */
-
-    // check token bi logout hay revoke?
     @Transient
     public boolean isRevoked() {
         return revokedAt != null;

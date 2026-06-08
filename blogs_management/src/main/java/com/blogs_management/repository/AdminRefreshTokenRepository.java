@@ -1,6 +1,6 @@
 package com.blogs_management.repository;
 
-import com.blogs_management.model.AdminRefreshToken;
+import com.blogs_management.entity.AdminRefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

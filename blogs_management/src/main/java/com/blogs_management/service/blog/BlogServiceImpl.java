@@ -5,7 +5,7 @@ import com.blogs_management.dto.blogs.BlogRequestDTO;
 import com.blogs_management.dto.blogs.BlogResponseDTO;
 import com.blogs_management.exception.ResourceNotFoundException;
 import com.blogs_management.mapper.BlogMapper;
-import com.blogs_management.model.Blog;
+import com.blogs_management.entity.Blog;
 import com.blogs_management.repository.BlogRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

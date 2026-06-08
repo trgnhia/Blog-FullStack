@@ -1,6 +1,6 @@
 package com.blogs_management.repository;
 
-import com.blogs_management.model.Admin;
+import com.blogs_management.entity.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

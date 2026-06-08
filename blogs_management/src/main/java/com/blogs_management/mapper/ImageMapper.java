@@ -1,7 +1,7 @@
 package com.blogs_management.mapper;
 
 import com.blogs_management.dto.images.ImageResponseDTO;
-import com.blogs_management.model.Image;
+import com.blogs_management.entity.Image;
 import org.springframework.stereotype.Component;
 
 @Component
